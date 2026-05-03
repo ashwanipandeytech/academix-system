@@ -16,6 +16,6 @@ export class LoginComponent {
 
   onQuickLogin(role: string) {
     this.authService.login(role);
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/erp/dashboard']);
   }
 }

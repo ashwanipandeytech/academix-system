@@ -5,6 +5,6 @@ import { Notification } from '../models/erp.models';
 @Injectable({ providedIn: 'root' })
 export class NotificationService extends BaseDataService<Notification> {
   constructor() {
-    super([]);
+    super('notifications');
   }
 }

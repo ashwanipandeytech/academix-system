@@ -1,67 +1,19 @@
 import { Routes } from '@angular/router';
-import { AuthLayoutComponent } from './core/layouts/auth-layout/auth-layout';
-import { MainLayoutComponent } from './core/layouts/main-layout/main-layout';
-import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
-    path: 'auth',
-    component: AuthLayoutComponent,
-    children: [
-      {
-        path: 'login',
-        loadComponent: () => import('./auth/login/login').then(m => m.LoginComponent)
-      },
-      {
-        path: 'forgot-password',
-        loadComponent: () => import('./auth/forgot-password/forgot-password').then(m => m.ForgotPasswordComponent)
-      },
-      { path: '', redirectTo: 'login', pathMatch: 'full' }
-    ]
+    path: '',
+    loadComponent: () => import('./features/landing/landing').then(m => m.LandingComponent),
+    title: 'EduERP - Smart School Management'
   },
   {
-    path: '',
-    component: MainLayoutComponent,
-    canActivate: [authGuard],
-    children: [
-      {
-        path: 'dashboard',
-        loadComponent: () => import('./features/dashboard/dashboard').then(m => m.DashboardComponent)
-      },
-      {
-        path: 'academic',
-        loadChildren: () => import('./features/academic/academic.routes').then(m => m.ACADEMIC_ROUTES)
-      },
-      {
-        path: 'students',
-        loadChildren: () => import('./features/students/students.routes').then(m => m.STUDENT_ROUTES)
-      },
-      {
-        path: 'teachers',
-        loadChildren: () => import('./features/teachers/teachers.routes').then(m => m.TEACHER_ROUTES)
-      },
-      {
-        path: 'fees',
-        loadChildren: () => import('./features/fees/fees.routes').then(m => m.FEE_ROUTES)
-      },
-      {
-        path: 'library',
-        loadChildren: () => import('./features/library/library.routes').then(m => m.LIBRARY_ROUTES)
-      },
-      {
-        path: 'exams',
-        loadChildren: () => import('./features/exams/exams.routes').then(m => m.EXAM_ROUTES)
-      },
-      {
-        path: 'inventory',
-        loadChildren: () => import('./features/inventory/inventory.routes').then(m => m.INVENTORY_ROUTES)
-      },
-      {
-        path: 'communication',
-        loadChildren: () => import('./features/communication/communication.routes').then(m => m.COMMUNICATION_ROUTES)
-      },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
-    ]
+    path: 'register-plan/:planName',
+    loadComponent: () => import('./features/landing/plan-registration/plan-registration').then(m => m.PlanRegistrationComponent),
+    title: 'Register Plan - EduERP'
   },
-  { path: '**', redirectTo: 'auth/login' }
+  {
+    path: 'erp',
+    loadChildren: () => import('./erp.routes').then(m => m.ERP_ROUTES)
+  },
+  { path: '**', redirectTo: '' }
 ];

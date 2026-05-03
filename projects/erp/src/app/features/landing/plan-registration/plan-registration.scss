@@ -1,0 +1,31 @@
+.registration-page {
+  background: radial-gradient(circle at top right, rgba(78, 115, 223, 0.05) 0%, transparent 40%),
+              radial-gradient(circle at bottom left, rgba(28, 200, 138, 0.05) 0%, transparent 40%);
+  font-family: 'Inter', sans-serif;
+}
+
+.form-control, .form-select {
+  border: 1px solid #e0e0e0;
+  &:focus {
+    border-color: #4e73df;
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.1);
+  }
+}
+
+.card {
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

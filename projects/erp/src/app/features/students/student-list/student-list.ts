@@ -13,7 +13,7 @@ import { ColumnConfig, Student } from '../../../core/models/erp.models';
 })
 export class StudentListComponent {
   private studentService = inject(StudentService);
-  students$ = this.studentService.data$;
+  students$ = this.studentService.getAll();
 
   columns: ColumnConfig[] = [
     { key: 'id', label: 'ID', sortable: true, type: 'text' },

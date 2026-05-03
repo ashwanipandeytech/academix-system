@@ -5,6 +5,6 @@ import { Product } from '../models/erp.models';
 @Injectable({ providedIn: 'root' })
 export class ProductService extends BaseDataService<Product> {
   constructor() {
-    super([]);
+    super('products');
   }
 }

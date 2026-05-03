@@ -86,6 +86,21 @@ export interface ApiResponse<T> {
   timestamp: string;
 }
 
+export interface InstitutionRegistration {
+  id: string;
+  institutionName: string;
+  institutionType: 'school' | 'college' | 'university' | 'coaching';
+  contactPerson: string;
+  email: string;
+  phone: string;
+  address: string;
+  website?: string;
+  planName: string;
+  estimatedStudents: number;
+  status: 'pending' | 'active' | 'cancelled';
+  createdAt: any;
+}
+
 export interface ColumnConfig {
   key: string;
   label: string;

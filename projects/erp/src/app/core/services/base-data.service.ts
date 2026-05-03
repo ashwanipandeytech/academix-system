@@ -1,40 +1,42 @@
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { inject } from '@angular/core';
+import { Firestore, collection, collectionData, doc, setDoc, updateDoc, deleteDoc, docData, DocumentReference, CollectionReference } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
-export abstract class BaseDataService<T extends { id: string | number }> {
-  protected dataSubject = new BehaviorSubject<T[]>([]);
-  data$ = this.dataSubject.asObservable();
+export abstract class BaseDataService<T extends { id: string }> {
+  protected firestore = inject(Firestore);
+  protected collectionPath: string;
 
-  constructor(initialData: T[] = []) {
-    this.dataSubject.next(initialData);
+  constructor(collectionPath: string) {
+    this.collectionPath = collectionPath;
+  }
+
+  protected getCollection(): CollectionReference<T> {
+    return collection(this.firestore, this.collectionPath) as CollectionReference<T>;
+  }
+
+  protected getDocRef(id: string): DocumentReference<T> {
+    return doc(this.firestore, `${this.collectionPath}/${id}`) as DocumentReference<T>;
   }
 
   getAll(): Observable<T[]> {
-    return this.data$;
+    return collectionData(this.getCollection(), { idField: 'id' }) as Observable<T[]>;
   }
 
-  getById(id: string | number): Observable<T | undefined> {
-    return this.data$.pipe(
-      map(items => items.find(item => item.id === id))
-    );
+  getById(id: string): Observable<T | undefined> {
+    return docData(this.getDocRef(id), { idField: 'id' }) as Observable<T | undefined>;
   }
 
-  create(item: T): void {
-    const currentData = this.dataSubject.value;
-    this.dataSubject.next([...currentData, item]);
+  async create(item: T): Promise<void> {
+    const newDocRef = doc(this.getCollection());
+    const id = item.id || newDocRef.id;
+    await setDoc(this.getDocRef(id), { ...item, id });
   }
 
-  update(id: string | number, updatedItem: T): void {
-    const currentData = this.dataSubject.value;
-    const index = currentData.findIndex(item => item.id === id);
-    if (index !== -1) {
-      const newData = [...currentData];
-      newData[index] = updatedItem;
-      this.dataSubject.next(newData);
-    }
+  async update(id: string, updatedItem: Partial<T>): Promise<void> {
+    await updateDoc(this.getDocRef(id) as any, updatedItem as any);
   }
 
-  delete(id: string | number): void {
-    const currentData = this.dataSubject.value;
-    this.dataSubject.next(currentData.filter(item => item.id !== id));
+  async delete(id: string): Promise<void> {
+    await deleteDoc(this.getDocRef(id) as any);
   }
 }
