@@ -34,8 +34,9 @@ jobs:
           server: 145.79.211.128
           username: u479097380
           password: ${{ secrets.FTP_PASSWORD_STAGE }}
-          port: 21
-          protocol: ftp
+          port: 65002
+          protocol: sftp
+          timeout: 60000
           log-level: verbose
           local-dir: ./dist/erp/browser/
           server-dir: public_html/academexic/
