@@ -1,0 +1,106 @@
+// Sidebar
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: #fff;
+  border-right: 1px solid $card-border-color;
+  transition: all 0.3s ease;
+  z-index: 1000;
+
+  &.collapsed {
+    width: 70px;
+    
+    .nav-link span {
+      display: none;
+    }
+    
+    .sidebar-brand-text {
+      display: none;
+    }
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    color: $secondary;
+    font-weight: 500;
+    gap: 1rem;
+
+    i {
+      font-size: 1.25rem;
+      width: 24px;
+      text-align: center;
+    }
+
+    &:hover, &.active {
+      color: $primary;
+      background-color: rgba($primary, 0.05);
+    }
+
+    &.active {
+      border-right: 3px solid $primary;
+    }
+  }
+}
+
+// Topbar
+.topbar {
+  height: 70px;
+  background-color: #fff;
+  border-bottom: 1px solid $card-border-color;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 260px;
+  transition: all 0.3s ease;
+
+  &.expanded {
+    margin-left: 70px;
+  }
+}
+
+// Main Content
+.main-content {
+  margin-left: 260px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+
+  &.expanded {
+    margin-left: 70px;
+  }
+}
+
+// Gradients
+.bg-gradient-primary { @include gradient-bg($primary-gradient); }
+.bg-gradient-success { @include gradient-bg($success-gradient); }
+.bg-gradient-warning { @include gradient-bg($warning-gradient); }
+.bg-gradient-danger  { @include gradient-bg($danger-gradient); }
+
+// Stats Cards
+.stat-card {
+  .icon-shape {
+    width: 48px;
+    height: 48px;
+    border-radius: 0.75rem;
+    @include flex-center;
+    font-size: 1.5rem;
+  }
+}
+
+// Responsive
+@media (max-width: 991.98px) {
+  .sidebar {
+    left: -260px;
+    &.show {
+      left: 0;
+    }
+  }
+  .topbar, .main-content {
+    margin-left: 0 !important;
+  }
+}

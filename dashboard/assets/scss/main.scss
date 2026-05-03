@@ -1,0 +1,24 @@
+// 1. Import Variables & Mixins
+@import "variables";
+@import "mixins";
+
+// 2. Import Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+// 3. Import Custom Components & Themes
+@import "components";
+@import "themes";
+
+// Global Styles
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
