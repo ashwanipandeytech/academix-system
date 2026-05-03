@@ -39,6 +39,8 @@ jobs:
           log-level: verbose
           local-dir: ./dist/erp/browser/
           server-dir: /domains/demohandler.in/public_html/academexic/
+          timeout: 120000
+          log-level: verbose
           dangerous-clean-slate: false
           exclude: |
             **/.htaccess
