@@ -38,7 +38,7 @@ jobs:
           protocol: ftp
           log-level: verbose
           local-dir: ./dist/erp/browser/
-          server-dir: ./${{ secrets.FTP_REMOTE_PATH_STAGE }}/
+          server-dir: ./domains/demohandler.in/public_html/academexic/
           dangerous-clean-slate: false
           exclude: |
             **/.htaccess
