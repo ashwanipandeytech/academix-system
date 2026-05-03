@@ -31,14 +31,14 @@ jobs:
       - name: Deploy ERP to Stage
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER_STAGE }}
-          username: ${{ secrets.FTP_USERNAME_STAGE }}
+          server: 145.79.211.128
+          username: u479097380
           password: ${{ secrets.FTP_PASSWORD_STAGE }}
           port: 21
           protocol: ftp
           log-level: verbose
           local-dir: ./dist/erp/browser/
-          server-dir: ${{ secrets.FTP_REMOTE_PATH_STAGE }}
+          server-dir: public_html/academexic/
           dangerous-clean-slate: false
           exclude: |
             **/.htaccess
