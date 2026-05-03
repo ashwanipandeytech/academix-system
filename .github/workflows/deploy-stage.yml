@@ -29,13 +29,17 @@ jobs:
           ls -R dist/erp/browser/
 
       - name: Deploy ERP to Stage
-        uses: easingthemes/ssh-deploy@v5.1.0
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: "-rlgoDzvc -i --delete"
-          SOURCE: "dist/erp/browser/"
-          REMOTE_HOST: "145.79.211.128"
-          REMOTE_USER: "u479097380"
-          REMOTE_PORT: "65002"
-          TARGET: "public_html/academexic/"
-          EXCLUDE: "/.htaccess, /api/"
+          server: ${{ secrets.FTP_SERVER_STAGE }}
+          username: ${{ secrets.FTP_USERNAME_STAGE }}
+          password: ${{ secrets.FTP_PASSWORD_STAGE }}
+          port: 21
+          protocol: ftp
+          log-level: verbose
+          local-dir: ./dist/erp/browser/
+          server-dir: ${{ secrets.FTP_REMOTE_PATH_STAGE }}
+          dangerous-clean-slate: false
+          exclude: |
+            **/.htaccess
+            api/**
