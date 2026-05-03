@@ -28,14 +28,19 @@ jobs:
         run: |
           ls -R dist/erp/browser/
 
+      - name: Debug Remote Path
+        run: |
+          sudo apt-get install -y sshpass
+          sshpass -p "${{ secrets.FTP_PASSWORD_STAGE }}" ssh -o StrictHostKeyChecking=no -p 65002 u479097380@145.79.211.128 "ls -la && ls -la domains/demohandler.in/public_html/academexic"
+
       - name: Deploy ERP to Stage
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: 145.79.211.128
           username: u479097380
           password: ${{ secrets.FTP_PASSWORD_STAGE }}
-          port: 21
-          protocol: ftp
+          port: 65002
+          protocol: sftp
           log-level: verbose
           local-dir: ./dist/erp/browser/
           server-dir: ./domains/demohandler.in/public_html/academexic/
