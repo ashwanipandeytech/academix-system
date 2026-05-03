@@ -38,7 +38,7 @@ jobs:
           protocol: ftp
           log-level: verbose
           local-dir: ./dist/erp/browser/
-          server-dir: public_html/academexic/
+          server-dir: academexic/
           dangerous-clean-slate: false
           exclude: |
             **/.htaccess
