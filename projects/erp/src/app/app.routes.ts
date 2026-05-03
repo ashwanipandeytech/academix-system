@@ -8,8 +8,7 @@ export const routes: Routes = [
   },
   {
     path: 'register-plan/:planName',
-    loadComponent: () => import('./features/landing/plan-registration/plan-registration').then(m => m.PlanRegistrationComponent),
-    title: 'Register Plan - EduERP'
+    loadChildren: () => import('./registration.routes').then(m => m.REGISTRATION_ROUTES)
   },
   {
     path: 'erp',

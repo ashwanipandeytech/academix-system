@@ -95,7 +95,7 @@ export class LandingComponent implements OnInit {
   ];
 
   testimonials = [
-    { name: 'John Doe', role: 'Principal, St. Mary School', text: 'This ERP has transformed how we manage our school operations. Highly recommended!', avatar: 'https://i.pravatar.cc/150?u=john' },
-    { name: 'Jane Smith', role: 'Administrator, Global Institute', text: 'The automation features saved us hundreds of hours of manual work.', avatar: 'https://i.pravatar.cc/150?u=jane' }
+    { name: 'John Doe', role: 'Principal, St. Mary School', text: 'This ERP has transformed how we manage our school operations. Highly recommended!', avatar: 'https://i.pravatar.cc/100&q=50?u=john' },
+    { name: 'Jane Smith', role: 'Administrator, Global Institute', text: 'The automation features saved us hundreds of hours of manual work.', avatar: 'https://i.pravatar.cc/100&q=50?u=jane' }
   ];
 }

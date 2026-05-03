@@ -2,11 +2,14 @@ import { Routes } from '@angular/router';
 import { AuthLayoutComponent } from './core/layouts/auth-layout/auth-layout';
 import { MainLayoutComponent } from './core/layouts/main-layout/main-layout';
 import { authGuard } from './core/guards/auth.guard';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
 export const ERP_ROUTES: Routes = [
   {
     path: 'auth',
     component: AuthLayoutComponent,
+    providers: [provideFirestore(() => getFirestore())],
     children: [
       {
         path: 'login',
@@ -23,6 +26,10 @@ export const ERP_ROUTES: Routes = [
     path: '',
     component: MainLayoutComponent,
     canActivate: [authGuard],
+    providers: [
+      provideCharts(withDefaultRegisterables()),
+      provideFirestore(() => getFirestore())
+    ],
     children: [
       {
         path: 'dashboard',
