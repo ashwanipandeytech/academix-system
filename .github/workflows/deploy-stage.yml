@@ -1,0 +1,45 @@
+name: Deploy Stage
+
+on:
+  push:
+    branches:
+      - stage
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build ERP (Stage)
+        run: npx ng build erp --configuration production --base-href https://academexic.demohandler.in/
+
+      - name: Verify Build Output
+        run: |
+          ls -R dist/erp/browser/
+
+      - name: Deploy ERP to Stage
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: 145.79.211.128
+          username: u479097380
+          password: ${{ secrets.FTP_PASSWORD_STAGE }}
+          port: 21
+          protocol: ftp
+          log-level: verbose
+          local-dir: ./dist/erp/browser/
+          server-dir: ${{ secrets.FTP_REMOTE_PATH_STAGE }}
+          dangerous-clean-slate: false
+          exclude: |
+            **/.htaccess
+            api/**
