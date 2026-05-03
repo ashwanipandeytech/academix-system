@@ -44,3 +44,41 @@ jobs:
           exclude: |
             **/.htaccess
             api/**
+
+      - name: Send Success Email
+        if: success()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: Deployment Successful - Academix ERP
+          to: ashwanipandeytech@gmail.com
+          from: Academix CI/CD <${{ secrets.MAIL_USERNAME }}>
+          body: |
+            Deployment of Academix ERP to stage was successful.
+            
+            Commit: ${{ github.sha }}
+            Workflow: ${{ github.workflow }}
+            Run URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+      - name: Send Failure Email
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: Deployment Failed - Academix ERP
+          to: ashwanipandeytech@gmail.com
+          from: Academix CI/CD <${{ secrets.MAIL_USERNAME }}>
+          body: |
+            Deployment of Academix ERP to stage failed. 
+            
+            Commit: ${{ github.sha }}
+            Workflow: ${{ github.workflow }}
+            Run URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+            
+            Please check the GitHub Actions logs for more details.
