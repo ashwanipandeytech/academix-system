@@ -1,0 +1,21 @@
+<div id="wrapper" class="d-flex">
+  <app-sidebar></app-sidebar>
+
+  <div id="content-wrapper" class="d-flex flex-column flex-grow-1">
+    <div id="content">
+      <app-navbar></app-navbar>
+
+      <div class="container-fluid py-4">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+    <footer class="sticky-footer bg-white py-3 mt-auto">
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <span>Copyright &copy; School ERP SaaS 2026</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>

@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow-sm px-4 py-2">
+  <!-- Sidebar Toggle (Topbar) -->
+  <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle me-3">
+    <i class="bi bi-list"></i>
+  </button>
+
+  <!-- Topbar Search -->
+  <form class="d-none d-sm-inline-block form-inline me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
+    <div class="input-group">
+      <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search">
+      <button class="btn btn-primary" type="button">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </form>
+
+  <!-- Topbar Navbar -->
+  <ul class="navbar-nav ms-auto">
+    <!-- Alerts Dropdown -->
+    <li class="nav-item dropdown no-arrow mx-1">
+      <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button">
+        <i class="bi bi-bell-fill text-secondary"></i>
+        <span class="badge bg-danger badge-counter">3+</span>
+      </a>
+    </li>
+
+    <!-- Messages Dropdown -->
+    <li class="nav-item dropdown no-arrow mx-1">
+      <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button">
+        <i class="bi bi-envelope-fill text-secondary"></i>
+        <span class="badge bg-danger badge-counter">7</span>
+      </a>
+    </li>
+
+    <div class="topbar-divider d-none d-sm-block border-end mx-3" style="height: 2rem; margin-top: 0.5rem;"></div>
+
+    <!-- User Information -->
+    <li class="nav-item dropdown no-arrow">
+      <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="me-2 d-none d-lg-inline text-dark small fw-bold">John Doe (Admin)</span>
+        <img class="img-profile rounded-circle" src="https://ui-avatars.com/api/?name=John+Doe&background=4e73df&color=fff" width="32" height="32">
+      </a>
+      <!-- Dropdown - User Information -->
+      <div class="dropdown-menu dropdown-menu-end shadow animated--grow-in" aria-labelledby="userDropdown">
+        <a class="dropdown-item" href="#">
+          <i class="bi bi-person me-2 text-gray-400"></i>
+          Profile
+        </a>
+        <a class="dropdown-item" href="#">
+          <i class="bi bi-gear me-2 text-gray-400"></i>
+          Settings
+        </a>
+        <a class="dropdown-item" href="#">
+          <i class="bi bi-list me-2 text-gray-400"></i>
+          Activity Log
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="javascript:void(0)" (click)="logout()">
+          <i class="bi bi-box-arrow-right me-2 text-gray-400"></i>
+          Logout
+        </a>
+      </div>
+    </li>
+  </ul>
+</nav>
