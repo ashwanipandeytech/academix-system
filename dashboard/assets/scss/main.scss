@@ -1,13 +1,18 @@
-// 1. Import Variables & Mixins
+// Note: Bootstrap 5.3 still relies on global variables for customization.
+// To ensure Bootstrap correctly picks up our overrides and maintains the correct CSS cascade,
+// we use @import for the main orchestration.
+
+// 1. Variables & Mixins (Global Scope)
 @import "variables";
 @import "mixins";
 
-// 2. Import Bootstrap
+// 2. Bootstrap (Loads with customized variables)
 @import "bootstrap/scss/bootstrap";
 
-// 3. Import Custom Components & Themes
+// 3. Custom Components & Themes (Must come after Bootstrap for overrides)
 @import "components";
 @import "themes";
+@import "auth";
 
 // Global Styles
 body {

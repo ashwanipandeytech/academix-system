@@ -75,6 +75,19 @@
   }
 }
 
+// Buttons
+.btn-primary {
+  @include gradient-bg($primary-gradient);
+  border: none;
+  color: #fff !important;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.9;
+    color: #fff !important;
+  }
+}
+
 // Gradients
 .bg-gradient-primary { @include gradient-bg($primary-gradient); }
 .bg-gradient-success { @include gradient-bg($success-gradient); }

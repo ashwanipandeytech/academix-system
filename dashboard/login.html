@@ -3,67 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Academix SaaS</title>
+    <title>Welcome | Academix SaaS</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="stylesheet" href="./assets/scss/main.scss">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-light">
-    <div class="container">
-        <div class="row min-vh-100 align-items-center justify-content-center">
-            <div class="col-md-5">
-                <div class="card border-0 shadow-lg">
-                    <div class="card-body p-5">
-                        <div class="text-center mb-5">
-                            <div class="bg-gradient-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                                <i class="bi bi-mortarboard-fill text-white fs-2"></i>
+<body class="auth-page">
+    <div class="auth-card">
+        <!-- Form Section -->
+        <div class="auth-form-section">
+            <div class="mb-4">
+                <div class="bg-gradient-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 48px; height: 48px;">
+                    <i class="bi bi-mortarboard-fill text-primary fs-4"></i>
+                </div>
+                <h3 class="fw-bold">Welcome to Academix</h3>
+                <p class="text-muted">Manage your school with ease.</p>
+            </div>
+
+            <ul class="nav nav-pills nav-pills-auth nav-justified" id="authTab" role="tablist">
+                <li class="nav-item">
+                    <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab">Login</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup" type="button" role="tab">Sign Up</button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="authTabContent">
+                <!-- Login Tab -->
+                <div class="tab-pane fade show active fade-up" id="login" role="tabpanel">
+                    <form id="loginForm">
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="userRole" required>
+                                <option value="admin">Administrator</option>
+                                <option value="teacher">Teacher</option>
+                                <option value="student">Student</option>
+                                <option value="parent">Parent</option>
+                            </select>
+                            <label for="userRole">Your Role</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="loginEmail" placeholder="name@school.com" value="admin@academix.com" required>
+                            <label for="loginEmail">Email Address</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="loginPassword" placeholder="Password" value="password123" required>
+                            <label for="loginPassword">Password</label>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="rememberMe">
+                                <label class="form-check-label small" for="rememberMe">Remember me</label>
                             </div>
-                            <h2 class="fw-bold">Academix</h2>
-                            <p class="text-muted">Welcome back! Please login to your account.</p>
+                            <a href="#" class="small text-primary text-decoration-none fw-medium">Forgot password?</a>
                         </div>
 
-                        <form id="loginForm">
-                            <div class="mb-3">
-                                <label class="form-label">Role</label>
-                                <select class="form-select" id="userRole" required>
-                                    <option value="admin">Administrator</option>
-                                    <option value="teacher">Teacher</option>
-                                    <option value="student">Student</option>
-                                    <option value="parent">Parent</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Email Address</label>
-                                <input type="email" class="form-control" placeholder="name@school.com" value="admin@academix.com" required>
-                            </div>
-                            <div class="mb-4">
-                                <div class="d-flex justify-content-between">
-                                    <label class="form-label">Password</label>
-                                    <a href="#" class="small text-primary fw-medium">Forgot password?</a>
-                                </div>
-                                <input type="password" class="form-control" value="password123" required>
-                            </div>
-                            <div class="mb-4 form-check">
-                                <input type="checkbox" class="form-check-input" id="rememberMe">
-                                <label class="form-check-label" for="rememberMe">Remember me</label>
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100 py-2 fw-bold bg-gradient-primary border-0">
-                                Sign In
-                            </button>
-                        </form>
+                        <button type="submit" class="btn btn-primary w-100 py-3 fw-bold bg-gradient-primary border-0 mb-3">
+                            Sign In
+                        </button>
+                        
+                        <button type="button" class="btn btn-light w-100 py-2 border small fw-medium" id="otpToggleBtn">
+                            Login with OTP instead
+                        </button>
+                    </form>
 
-                        <div class="mt-5 text-center">
-                            <p class="mb-0 text-muted">Don't have an account? <a href="#" class="text-primary fw-medium">Contact Admin</a></p>
+                    <div class="divider"><span>OR continue with</span></div>
+                    
+                    <button class="btn social-btn w-100 rounded-3">
+                        <img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png" width="18" alt="Google">
+                        Sign in with Google
+                    </button>
+                </div>
+
+                <!-- Sign Up Tab -->
+                <div class="tab-pane fade fade-up" id="signup" role="tabpanel">
+                    <form id="signupForm">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="signupName" placeholder="John Doe" required>
+                            <label for="signupName">Full Name</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="signupEmail" placeholder="name@school.com" required>
+                            <label for="signupEmail">Email Address</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="signupRole" required>
+                                <option value="teacher">Teacher</option>
+                                <option value="student">Student</option>
+                                <option value="parent">Parent</option>
+                            </select>
+                            <label for="signupRole">Select Role</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="signupPassword" placeholder="Password" required>
+                            <label for="signupPassword">Password</label>
+                        </div>
+                        <div class="form-floating mb-4">
+                            <input type="password" class="form-control" id="signupConfirm" placeholder="Confirm Password" required>
+                            <label for="signupConfirm">Confirm Password</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 py-3 fw-bold bg-gradient-primary border-0">
+                            Create Account
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- OTP Interface (Hidden by default) -->
+            <div id="otpContainer" class="d-none fade-up">
+                <div class="text-center mb-4">
+                    <div class="bg-gradient-warning rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px;">
+                        <i class="bi bi-shield-lock-fill text-white fs-2"></i>
+                    </div>
+                    <h4 class="fw-bold">Security Verification</h4>
+                    <p class="text-muted">Enter the 4-digit code sent to your email.</p>
+                </div>
+                <form id="otpForm">
+                    <div class="d-flex justify-content-center gap-3 mb-4">
+                        <input type="text" class="form-control text-center fs-2 fw-bold" maxlength="1" style="width: 60px; height: 70px;" pattern="\d" required>
+                        <input type="text" class="form-control text-center fs-2 fw-bold" maxlength="1" style="width: 60px; height: 70px;" pattern="\d" required>
+                        <input type="text" class="form-control text-center fs-2 fw-bold" maxlength="1" style="width: 60px; height: 70px;" pattern="\d" required>
+                        <input type="text" class="form-control text-center fs-2 fw-bold" maxlength="1" style="width: 60px; height: 70px;" pattern="\d" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 py-3 fw-bold bg-gradient-primary border-0 mb-3">
+                        Verify & Continue
+                    </button>
+                    <button type="button" class="btn btn-link w-100 text-decoration-none small" id="backToLoginBtn">
+                        Back to password login
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Visual Section -->
+        <div class="auth-visual-section">
+            <div class="visual-content px-5">
+                <div class="mb-5">
+                    <i class="bi bi-cpu fs-1 mb-4 d-block"></i>
+                    <h2 class="display-6 fw-bold mb-3">The Future of Education Management</h2>
+                    <p class="lead opacity-75">Streamline your school's workflow with our AI-powered SaaS platform.</p>
+                </div>
+                <div class="row g-4 text-start">
+                    <div class="col-6">
+                        <div class="d-flex gap-3 align-items-center">
+                            <i class="bi bi-lightning-fill fs-4"></i>
+                            <span class="small fw-medium">Real-time Analytics</span>
                         </div>
                     </div>
-                </div>
-                <div class="text-center mt-4">
-                    <p class="small text-muted">&copy; 2026 Academix System. All rights reserved.</p>
+                    <div class="col-6">
+                        <div class="d-flex gap-3 align-items-center">
+                            <i class="bi bi-shield-check fs-4"></i>
+                            <span class="small fw-medium">Secure Records</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="./assets/js/auth.js"></script>
 </body>
 </html>
