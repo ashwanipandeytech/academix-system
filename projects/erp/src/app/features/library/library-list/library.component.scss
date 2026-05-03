@@ -1,0 +1,51 @@
+@import "assets/scss/variables";
+
+.library-icon,
+.issue-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.library-icon {
+  font-size: 1.2rem;
+}
+
+.library-icon-primary,
+.issue-icon {
+  background: rgba($primary, 0.12);
+  color: $primary;
+}
+
+.library-icon-warning { background: rgba($warning, 0.14); color: $warning; }
+.library-icon-success { background: rgba($success, 0.12); color: $success; }
+
+.issue-row {
+  display: flex;
+  gap: 0.875rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.07);
+
+  &:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+.smaller {
+  font-size: 0.75rem;
+}
+
+.dropdown-toggle::after {
+  margin-left: auto;
+}
+
+.dropdown-item.active {
+  background: $primary;
+}

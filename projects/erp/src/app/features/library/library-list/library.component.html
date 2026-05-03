@@ -1,44 +1,144 @@
-<div class="d-flex justify-content-between align-items-center mb-4">
-  <h3 class="fw-bold mb-0">Library Catalog</h3>
-  <button class="btn btn-primary px-4">Add Book</button>
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+  <div>
+    <h3 class="fw-bold mb-0">Library Catalog</h3>
+    <p class="text-muted mb-0">Manage books, stock, and student issues</p>
+  </div>
+  <div class="d-flex gap-2">
+    <button class="btn btn-outline-primary border-2 px-4">
+      <i class="bi bi-upc-scan me-2"></i>Scan
+    </button>
+    <button class="btn btn-primary px-4">
+      <i class="bi bi-plus-lg me-2"></i>Add Book
+    </button>
+  </div>
 </div>
 
-<div class="card border-0 shadow-sm">
-  <div class="card-body p-0">
-    <div class="table-responsive">
-      <table class="table table-hover align-middle mb-0">
-        <thead class="bg-light">
-          <tr>
-            <th class="px-4">Book Info</th>
-            <th>Category</th>
-            <th>Copies</th>
-            <th>Status</th>
-            <th class="text-end px-4">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (book of books; track book.title) {
-            <tr>
-              <td class="px-4">
-                <p class="mb-0 fw-bold">{{book.title}}</p>
-                <p class="smaller text-muted mb-0">{{book.author}}</p>
-              </td>
-              <td>{{book.category}}</td>
-              <td>{{book.available}} / {{book.copies}}</td>
-              <td>
-                @if (book.available > 0) {
-                  <span class="badge bg-success-subtle text-success">Available</span>
-                } @else {
-                  <span class="badge bg-danger-subtle text-danger">Out of Stock</span>
+<div class="row g-4 mb-4">
+  @for (item of summary; track item.label) {
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body d-flex align-items-center gap-3">
+          <div class="library-icon" [ngClass]="'library-icon-' + item.color">
+            <i class="bi" [ngClass]="item.icon"></i>
+          </div>
+          <div>
+            <p class="text-muted small mb-1">{{item.label}}</p>
+            <h4 class="fw-bold mb-0">{{item.value}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+
+<div class="row g-4">
+  <div class="col-xl-8">
+    <div class="card border-0 shadow-sm h-100">
+      <div class="card-header border-0 bg-transparent p-4">
+        <div class="row g-3">
+          <div class="col-md-5">
+            <div class="input-group">
+              <span class="input-group-text bg-light border-0"><i class="bi bi-search"></i></span>
+              <input type="text" class="form-control bg-light border-0" placeholder="Search title, author, ISBN...">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="dropdown">
+              <button class="btn btn-light dropdown-toggle w-100 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span>{{selectedCategory()}}</span>
+                <i class="bi bi-chevron-down dropdown-chevron"></i>
+              </button>
+              <ul class="dropdown-menu w-100">
+                @for (category of categoryOptions; track category) {
+                  <li>
+                    <button type="button" class="dropdown-item" [class.active]="selectedCategory() === category" (click)="setCategoryFilter(category)">
+                      {{category}}
+                    </button>
+                  </li>
                 }
-              </td>
-              <td class="text-end px-4">
-                <button class="btn btn-primary btn-sm px-3" [disabled]="book.available === 0">Issue</button>
-              </td>
-            </tr>
-          }
-        </tbody>
-      </table>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="dropdown">
+              <button class="btn btn-light dropdown-toggle w-100 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span>{{selectedAvailability()}}</span>
+                <i class="bi bi-chevron-down dropdown-chevron"></i>
+              </button>
+              <ul class="dropdown-menu w-100">
+                @for (availability of availabilityOptions; track availability) {
+                  <li>
+                    <button type="button" class="dropdown-item" [class.active]="selectedAvailability() === availability" (click)="setAvailabilityFilter(availability)">
+                      {{availability}}
+                    </button>
+                  </li>
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="bg-light">
+              <tr>
+                <th class="px-4">Book Info</th>
+                <th>Category</th>
+                <th>ISBN</th>
+                <th>Shelf</th>
+                <th>Copies</th>
+                <th>Status</th>
+                <th class="text-end px-4">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (book of filteredBooks(); track book.title) {
+                <tr>
+                  <td class="px-4">
+                    <p class="mb-0 fw-bold">{{book.title}}</p>
+                    <p class="smaller text-muted mb-0">{{book.author}}</p>
+                  </td>
+                  <td>{{book.category}}</td>
+                  <td>{{book.isbn}}</td>
+                  <td><span class="badge bg-light text-dark border">{{book.shelf}}</span></td>
+                  <td>{{book.available}} / {{book.copies}}</td>
+                  <td>
+                    @if (book.available > 0) {
+                      <span class="badge bg-success-subtle text-success">Available</span>
+                    } @else {
+                      <span class="badge bg-danger-subtle text-danger">Out of Stock</span>
+                    }
+                  </td>
+                  <td class="text-end px-4">
+                    <button class="btn btn-primary btn-sm px-3" [disabled]="book.available === 0">Issue</button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-4">
+    <div class="card border-0 shadow-sm h-100">
+      <div class="card-header bg-transparent border-0 p-4 pb-0">
+        <h5 class="fw-bold mb-1">Recent Issues</h5>
+        <p class="text-muted small mb-0">Books currently with students</p>
+      </div>
+      <div class="card-body p-4">
+        @for (issue of recentIssues; track issue.student + issue.book) {
+          <div class="issue-row">
+            <div class="issue-icon"><i class="bi bi-book"></i></div>
+            <div>
+              <p class="fw-semibold mb-0">{{issue.book}}</p>
+              <p class="small text-muted mb-0">{{issue.student}} · Due {{issue.due}}</p>
+            </div>
+          </div>
+        }
+      </div>
     </div>
   </div>
 </div>

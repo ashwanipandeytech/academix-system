@@ -13,6 +13,24 @@
   </div>
 </div>
 
+<div class="row g-4 mb-4">
+  @for (item of summary; track item.label) {
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body d-flex align-items-center gap-3">
+          <div class="student-icon" [ngClass]="'student-icon-' + item.color">
+            <i class="bi" [ngClass]="item.icon"></i>
+          </div>
+          <div>
+            <p class="text-muted small mb-1">{{item.label}}</p>
+            <h4 class="fw-bold mb-0">{{item.value}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+
 <div class="card border-0 shadow-sm">
   <div class="card-header border-0 bg-transparent p-4">
     <div class="row g-3">
@@ -23,11 +41,21 @@
         </div>
       </div>
       <div class="col-md-3">
-        <select class="form-select bg-light border-0">
-          <option selected>Filter by Class</option>
-          <option>Grade 10-A</option>
-          <option>Grade 9-B</option>
-        </select>
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle w-100 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span>{{selectedClass()}}</span>
+            <i class="bi bi-chevron-down dropdown-chevron"></i>
+          </button>
+          <ul class="dropdown-menu w-100">
+            @for (className of classOptions; track className) {
+              <li>
+                <button type="button" class="dropdown-item" [class.active]="selectedClass() === className" (click)="setClassFilter(className)">
+                  {{className}}
+                </button>
+              </li>
+            }
+          </ul>
+        </div>
       </div>
     </div>
   </div>

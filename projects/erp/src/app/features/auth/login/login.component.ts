@@ -16,6 +16,13 @@ export class LoginComponent {
   signupForm: FormGroup;
   activeTab = signal<'login' | 'signup'>('login');
   showOtp = signal<boolean>(false);
+  loginRoles = [
+    { value: 'admin', label: 'Administrator' },
+    { value: 'teacher', label: 'Teacher' },
+    { value: 'student', label: 'Student' },
+    { value: 'parent', label: 'Parent' }
+  ];
+  signupRoles = this.loginRoles.filter(role => role.value !== 'admin');
 
   constructor(
     private fb: FormBuilder,
@@ -44,6 +51,18 @@ export class LoginComponent {
 
   toggleOtp() {
     this.showOtp.set(!this.showOtp());
+  }
+
+  setLoginRole(role: string) {
+    this.loginForm.patchValue({ role });
+  }
+
+  setSignupRole(role: string) {
+    this.signupForm.patchValue({ role });
+  }
+
+  getRoleLabel(role: string | null | undefined) {
+    return this.loginRoles.find(item => item.value === role)?.label ?? 'Select Role';
   }
 
   onLogin() {

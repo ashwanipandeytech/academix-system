@@ -1,0 +1,60 @@
+@import "assets/scss/variables";
+
+.feature-icon,
+.date-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.feature-icon {
+  font-size: 1.25rem;
+}
+
+.feature-icon-primary,
+.date-box {
+  background: rgba($primary, 0.12);
+  color: $primary;
+}
+
+.feature-icon-warning { background: rgba($warning, 0.14); color: $warning; }
+.feature-icon-success { background: rgba($success, 0.12); color: $success; }
+
+.date-box {
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.grade-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.07);
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+}
+
+.smaller {
+  font-size: 0.75rem;
+}
+
+.dropdown-toggle::after {
+  margin-left: auto;
+}
+
+.dropdown-item.active {
+  background: $primary;
+}

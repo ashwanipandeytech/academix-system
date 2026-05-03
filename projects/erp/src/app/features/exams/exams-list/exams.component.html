@@ -1,28 +1,147 @@
-<div class="d-flex justify-content-between align-items-center mb-4">
-  <h3 class="fw-bold mb-0">Exams & Grading</h3>
-  <button class="btn btn-primary px-4">Schedule Exam</button>
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+  <div>
+    <h3 class="fw-bold mb-0">Exams & Grading</h3>
+    <p class="text-muted mb-0">Plan assessments, publish results, and track submissions</p>
+  </div>
+  <div class="d-flex gap-2">
+    <button class="btn btn-outline-primary border-2 px-4">
+      <i class="bi bi-upload me-2"></i>Import Marks
+    </button>
+    <button class="btn btn-primary px-4">
+      <i class="bi bi-plus-lg me-2"></i>Schedule Exam
+    </button>
+  </div>
+</div>
+
+<div class="row g-4 mb-4">
+  @for (item of summary; track item.label) {
+    <div class="col-md-4">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body d-flex align-items-center gap-3">
+          <div class="feature-icon" [ngClass]="'feature-icon-' + item.color">
+            <i class="bi" [ngClass]="item.icon"></i>
+          </div>
+          <div>
+            <p class="text-muted small mb-1">{{item.label}}</p>
+            <h4 class="fw-bold mb-0">{{item.value}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+
+<div class="card border-0 shadow-sm mb-4">
+  <div class="card-header border-0 bg-transparent p-4">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="input-group">
+          <span class="input-group-text bg-light border-0"><i class="bi bi-search"></i></span>
+          <input type="text" class="form-control bg-light border-0" placeholder="Search exam, subject...">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle w-100 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span>{{selectedClass()}}</span>
+            <i class="bi bi-chevron-down dropdown-chevron"></i>
+          </button>
+          <ul class="dropdown-menu w-100">
+            @for (className of classOptions; track className) {
+              <li>
+                <button type="button" class="dropdown-item" [class.active]="selectedClass() === className" (click)="setClassFilter(className)">
+                  {{className}}
+                </button>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="dropdown">
+          <button class="btn btn-light dropdown-toggle w-100 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span>{{selectedStatus()}}</span>
+            <i class="bi bi-chevron-down dropdown-chevron"></i>
+          </button>
+          <ul class="dropdown-menu w-100">
+            @for (status of statusOptions; track status) {
+              <li>
+                <button type="button" class="dropdown-item" [class.active]="selectedStatus() === status" (click)="setStatusFilter(status)">
+                  {{status}}
+                </button>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="bg-light">
+          <tr>
+            <th class="px-4">Exam</th>
+            <th>Class</th>
+            <th>Time</th>
+            <th>Duration</th>
+            <th>Status</th>
+            <th class="text-end px-4">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (exam of filteredExams(); track exam.name) {
+            <tr>
+              <td class="px-4">
+                <div class="d-flex gap-3 align-items-center">
+                  <div class="date-box">
+                    <div class="small fw-bold">MAY</div>
+                    <div class="fs-5 fw-bold">{{exam.date.split(' ')[1]}}</div>
+                  </div>
+                  <div>
+                    <p class="fw-bold mb-0">{{exam.name}}</p>
+                    <p class="smaller text-muted mb-0">{{exam.subject}}</p>
+                  </div>
+                </div>
+              </td>
+              <td>{{exam.class}}</td>
+              <td>{{exam.time}}</td>
+              <td>{{exam.duration}}</td>
+              <td>
+                <span class="badge" [ngClass]="{
+                  'bg-primary-subtle text-primary': exam.status === 'Scheduled',
+                  'bg-warning-subtle text-warning': exam.status === 'Draft',
+                  'bg-success-subtle text-success': exam.status === 'Published'
+                }">{{exam.status}}</span>
+              </td>
+              <td class="text-end px-4">
+                <button class="btn btn-sm btn-light border"><i class="bi bi-three-dots-vertical"></i></button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
 
 <div class="card border-0 shadow-sm">
+  <div class="card-header bg-transparent border-0 p-4 pb-0">
+    <h5 class="fw-bold mb-1">Grade Book Progress</h5>
+    <p class="text-muted small mb-0">Marks submission status by class</p>
+  </div>
   <div class="card-body p-4">
-    <div class="list-group list-group-flush">
-      @for (exam of exams; track exam.name) {
-        <div class="list-group-item px-0 py-3 border-0 border-bottom">
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="d-flex gap-3">
-              <div class="bg-primary-subtle text-primary rounded px-3 py-2 text-center" style="min-width: 60px;">
-                <div class="small fw-bold">MAY</div>
-                <div class="fs-5 fw-bold">{{exam.date.split(' ')[1]}}</div>
-              </div>
-              <div>
-                <h6 class="fw-bold mb-0">{{exam.name}}</h6>
-                <p class="smaller text-muted mb-0">{{exam.class}}</p>
-              </div>
-            </div>
-            <span class="badge bg-light text-dark border">{{exam.status}}</span>
-          </div>
+    @for (item of gradeBook; track item.className + item.subject) {
+      <div class="grade-row">
+        <div>
+          <p class="fw-semibold mb-0">{{item.subject}}</p>
+          <p class="small text-muted mb-0">{{item.className}} · {{item.submitted}}/{{item.total}} submitted</p>
         </div>
-      }
-    </div>
+        <div class="text-end">
+          <span class="fw-bold">{{item.average}}</span>
+          <p class="small text-muted mb-0">Class average</p>
+        </div>
+      </div>
+    }
   </div>
 </div>

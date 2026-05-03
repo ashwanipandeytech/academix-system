@@ -15,7 +15,7 @@
   font-size: 0.75rem;
 }
 
-.student-icon {
+.teacher-icon {
   width: 44px;
   height: 44px;
   border-radius: 0.875rem;
@@ -25,9 +25,15 @@
   font-size: 1.2rem;
 }
 
-.student-icon-primary { background: rgba($primary, 0.12); color: $primary; }
-.student-icon-success { background: rgba($success, 0.12); color: $success; }
-.student-icon-warning { background: rgba($warning, 0.14); color: $warning; }
+.teacher-icon-primary { background: rgba($primary, 0.12); color: $primary; }
+.teacher-icon-success { background: rgba($success, 0.12); color: $success; }
+.teacher-icon-warning { background: rgba($warning, 0.14); color: $warning; }
+
+.teacher-contact {
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  background: #f8fafc;
+}
 
 .dropdown-toggle::after {
   margin-left: auto;

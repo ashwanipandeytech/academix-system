@@ -12,6 +12,14 @@
   </div>
 
   <div class="d-flex align-items-center gap-4">
+    <button class="theme-toggle" type="button" (click)="toggleTheme()" [attr.aria-label]="theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'">
+      <span class="theme-toggle-track">
+        <i class="bi bi-sun-fill sun-icon"></i>
+        <i class="bi bi-moon-stars-fill moon-icon"></i>
+        <span class="theme-toggle-thumb" [class.dark]="theme() === 'dark'"></span>
+      </span>
+    </button>
+
     <div class="dropdown">
       <div class="user-profile d-flex align-items-center gap-2 cursor-pointer" data-bs-toggle="dropdown">
         <div class="avatar-gradient">

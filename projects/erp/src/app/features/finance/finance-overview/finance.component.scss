@@ -1,0 +1,41 @@
+@import "assets/scss/variables";
+
+.finance-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.finance-icon-success { background: rgba($success, 0.12); color: $success; }
+.finance-icon-warning { background: rgba($warning, 0.14); color: $warning; }
+.finance-icon-primary { background: rgba($primary, 0.12); color: $primary; }
+.finance-icon-danger { background: rgba($danger, 0.12); color: $danger; }
+
+.payment-row {
+  margin-bottom: 1.25rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.progress {
+  height: 0.55rem;
+  background: #e2e8f0;
+}
+
+.progress-bar {
+  background: $primary-gradient;
+}
+
+.dropdown-toggle::after {
+  margin-left: auto;
+}
+
+.dropdown-item.active {
+  background: $primary;
+}

@@ -20,11 +20,16 @@
   .auth-form-section {
     flex: 1;
     padding: 3rem;
+    min-width: 0;
   }
 
   .auth-visual-section {
     flex: 1;
-    background: linear-gradient(135deg, #6366f1 0%, #a855f7 33%, #f59e0b 66%, #ea580c 100%);
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.28), transparent 24%),
+      linear-gradient(135deg, #111827 0%, #4f46e5 42%, #a855f7 72%, #f59e0b 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,6 +39,100 @@
 
     @media (max-width: 991.98px) {
       display: none;
+    }
+  }
+
+  .visual-content {
+    position: relative;
+    z-index: 1;
+    max-width: 380px;
+  }
+
+  .visual-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(12px);
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+
+  .gradient-orbit {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(2px);
+    opacity: 0.65;
+    pointer-events: none;
+  }
+
+  .orbit-one {
+    width: 220px;
+    height: 220px;
+    right: -70px;
+    top: -55px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.42), rgba(168, 85, 247, 0.1) 62%, transparent 70%);
+  }
+
+  .orbit-two {
+    width: 170px;
+    height: 170px;
+    left: -55px;
+    bottom: -40px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.7), rgba(99, 102, 241, 0.1) 62%, transparent 70%);
+  }
+
+  .visual-points {
+    display: grid;
+    gap: 0.875rem;
+    margin-top: 2rem;
+    text-align: left;
+
+    div {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    i {
+      margin-top: 0.15rem;
+      flex: 0 0 auto;
+    }
+  }
+
+  .visual-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-top: 2rem;
+
+    div {
+      padding: 0.9rem 0.7rem;
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(12px);
+    }
+
+    strong,
+    span {
+      display: block;
+    }
+
+    strong {
+      font-size: 1.15rem;
+      line-height: 1;
+    }
+
+    span {
+      margin-top: 0.35rem;
+      font-size: 0.72rem;
+      opacity: 0.76;
     }
   }
 
@@ -72,6 +171,96 @@
   .otp-icon {
     font-size: 3rem;
     color: $warning;
+  }
+
+  .form-floating > label {
+    color: #64748b;
+  }
+
+  .demo-box {
+    padding: 0.875rem 1rem;
+    border-radius: 0.875rem;
+    background: #f8fafc;
+    border: 1px solid rgba(15, 23, 42, 0.06);
+  }
+
+  .smaller {
+    font-size: 0.75rem;
+  }
+
+  .auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #94a3b8;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+
+    &::before,
+    &::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: rgba(148, 163, 184, 0.28);
+    }
+  }
+
+  .social-btn {
+    min-height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 0.85rem;
+    background:
+      linear-gradient(#fff, #fff) padding-box,
+      linear-gradient(135deg, rgba(99, 102, 241, 0.55), rgba(168, 85, 247, 0.45), rgba(245, 158, 11, 0.38)) border-box;
+    color: $dark;
+    font-weight: 700;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+
+    i {
+      color: $primary;
+      font-size: 1.05rem;
+    }
+
+    &:hover,
+    &:focus {
+      transform: translateY(-1px);
+      border-color: transparent;
+      box-shadow: 0 0.8rem 1.6rem rgba(99, 102, 241, 0.14);
+    }
+  }
+
+  .dropdown-toggle::after {
+    margin-left: auto;
+  }
+
+  .dropdown-item.active {
+    background: $primary;
+  }
+
+  .dropdown-menu {
+    width: 100%;
+    box-shadow: 0 0.75rem 1.5rem rgba(15, 23, 42, 0.08);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .auth-page {
+    padding: 1rem;
+    align-items: flex-start;
+
+    .auth-form-section {
+      padding: 1.5rem;
+    }
+
+    .auth-card {
+      border-radius: 1rem;
+    }
   }
 }
 

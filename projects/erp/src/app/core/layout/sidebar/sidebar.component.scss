@@ -6,8 +6,9 @@
   position: fixed;
   left: 0;
   top: 0;
-  background-color: #fff;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
   border-right: 1px solid rgba(0,0,0,0.05);
+  color: $dark;
 
   .brand-bg {
     background: $primary-gradient;
@@ -39,6 +40,29 @@
 
     &.active {
       border-right: 3px solid $primary;
+    }
+  }
+}
+
+:host-context([data-bs-theme="dark"]) {
+  .sidebar {
+    background: linear-gradient(180deg, #111827 0%, #172033 100%);
+    border-right-color: rgba(255, 255, 255, 0.08);
+    color: #f8fafc;
+
+    .nav-link {
+      color: #aeb9cc;
+
+      &:hover,
+      &.active {
+        color: #ffffff;
+        background-color: rgba(99, 102, 241, 0.18);
+      }
+    }
+
+    hr {
+      border-color: rgba(255, 255, 255, 0.14);
+      opacity: 1 !important;
     }
   }
 }

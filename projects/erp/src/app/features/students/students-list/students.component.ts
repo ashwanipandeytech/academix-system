@@ -14,17 +14,33 @@ export class StudentsComponent {
   
   students = this.studentService.getStudents();
   searchQuery = signal('');
+  selectedClass = signal('All Classes');
+  classOptions = ['All Classes', 'Grade 10-A', 'Grade 9-B', 'Grade 8-C', 'Grade 11-B'];
+
+  summary = [
+    { label: 'Total Students', value: 1284, icon: 'bi-people-fill', color: 'primary' },
+    { label: 'New Admissions', value: 42, icon: 'bi-person-plus', color: 'success' },
+    { label: 'Pending Review', value: 18, icon: 'bi-hourglass-split', color: 'warning' }
+  ];
   
   filteredStudents = computed(() => {
     const query = this.searchQuery().toLowerCase();
+    const className = this.selectedClass();
     return this.students().filter(s => 
-      s.name.toLowerCase().includes(query) || 
-      s.id.toLowerCase().includes(query)
+      (className === 'All Classes' || s.class === className) &&
+      (
+        s.name.toLowerCase().includes(query) ||
+        s.id.toLowerCase().includes(query)
+      )
     );
   });
 
   onSearch(event: Event) {
     const target = event.target as HTMLInputElement;
     this.searchQuery.set(target.value);
+  }
+
+  setClassFilter(className: string) {
+    this.selectedClass.set(className);
   }
 }

@@ -7,7 +7,7 @@
           <i class="bi bi-mortarboard-fill"></i>
         </div>
         <h3 class="fw-bold">Welcome to Academix</h3>
-        <p class="text-muted">Manage your school with ease.</p>
+        <p class="text-muted mb-0">Sign in to manage students, teachers, fees, exams, and library operations.</p>
       </div>
 
       <!-- Tab Switcher -->
@@ -25,14 +25,23 @@
           <!-- Login Flow -->
           @if (activeTab() === 'login') {
             <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="fade-in">
-              <div class="form-floating mb-3">
-                <select class="form-select" id="userRole" formControlName="role">
-                  <option value="admin">Administrator</option>
-                  <option value="teacher">Teacher</option>
-                  <option value="student">Student</option>
-                  <option value="parent">Parent</option>
-                </select>
-                <label for="userRole">Your Role</label>
+              <div class="mb-3">
+                <label class="form-label small fw-semibold text-muted">Your Role</label>
+                <div class="dropdown w-100">
+                  <button class="btn btn-light border dropdown-toggle w-100 py-3 text-start d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span>{{getRoleLabel(loginForm.get('role')?.value)}}</span>
+                    <i class="bi bi-chevron-down dropdown-chevron"></i>
+                  </button>
+                  <ul class="dropdown-menu w-100">
+                    @for (role of loginRoles; track role.value) {
+                      <li>
+                        <button type="button" class="dropdown-item" [class.active]="loginForm.get('role')?.value === role.value" (click)="setLoginRole(role.value)">
+                          {{role.label}}
+                        </button>
+                      </li>
+                    }
+                  </ul>
+                </div>
               </div>
               <div class="form-floating mb-3">
                 <input type="email" class="form-control" id="loginEmail" placeholder="name@school.com" formControlName="email">
@@ -52,7 +61,30 @@
               </div>
 
               <button type="submit" class="btn btn-primary w-100 py-3 fw-bold mb-3">Sign In</button>
+              <div class="auth-divider my-4">
+                <span>or continue with</span>
+              </div>
+              <div class="row g-3 mb-3">
+                <div class="col-sm-6">
+                  <button type="button" class="btn social-btn w-100">
+                    <i class="bi bi-google"></i>
+                    <span>Google</span>
+                  </button>
+                </div>
+                <div class="col-sm-6">
+                  <button type="button" class="btn social-btn w-100">
+                    <i class="bi bi-facebook"></i>
+                    <span>Facebook</span>
+                  </button>
+                </div>
+              </div>
               <button type="button" class="btn btn-light w-100 py-2 border small fw-medium" (click)="toggleOtp()">Login with OTP instead</button>
+
+              <div class="demo-box mt-4">
+                <p class="small fw-bold mb-2">Demo login</p>
+                <p class="smaller text-muted mb-1">Email: admin&#64;academix.com</p>
+                <p class="smaller text-muted mb-0">Password: password123</p>
+              </div>
             </form>
           }
 
@@ -67,18 +99,33 @@
                 <input type="email" class="form-control" id="signupEmail" placeholder="Email" formControlName="email">
                 <label for="signupEmail">Email Address</label>
               </div>
-              <div class="form-floating mb-3">
-                <select class="form-select" id="signupRole" formControlName="role">
-                  <option value="teacher">Teacher</option>
-                  <option value="student">Student</option>
-                  <option value="parent">Parent</option>
-                </select>
-                <label for="signupRole">Select Role</label>
+              <div class="mb-3">
+                <label class="form-label small fw-semibold text-muted">Select Role</label>
+                <div class="dropdown w-100">
+                  <button class="btn btn-light border dropdown-toggle w-100 py-3 text-start d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span>{{getRoleLabel(signupForm.get('role')?.value)}}</span>
+                    <i class="bi bi-chevron-down dropdown-chevron"></i>
+                  </button>
+                  <ul class="dropdown-menu w-100">
+                    @for (role of signupRoles; track role.value) {
+                      <li>
+                        <button type="button" class="dropdown-item" [class.active]="signupForm.get('role')?.value === role.value" (click)="setSignupRole(role.value)">
+                          {{role.label}}
+                        </button>
+                      </li>
+                    }
+                  </ul>
+                </div>
               </div>
               <div class="form-floating mb-3">
                 <input type="password" class="form-control" id="signupPassword" placeholder="Password" formControlName="password">
                 <label for="signupPassword">Password</label>
               </div>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="signupConfirmPassword" placeholder="Confirm Password" formControlName="confirmPassword">
+                <label for="signupConfirmPassword">Confirm Password</label>
+              </div>
+              <p class="smaller text-muted mb-3">Your account request will be reviewed by the school administrator.</p>
               <button type="submit" class="btn btn-primary w-100 py-3 fw-bold">Create Account</button>
             </form>
           }
@@ -107,10 +154,34 @@
 
     <!-- Visual Section -->
     <div class="auth-visual-section">
+      <div class="gradient-orbit orbit-one"></div>
+      <div class="gradient-orbit orbit-two"></div>
       <div class="visual-content">
-        <i class="bi bi-cpu fs-1 mb-4 d-block"></i>
-        <h2 class="display-6 fw-bold mb-3">The Future of Education Management</h2>
-        <p class="lead opacity-75">Streamline your school's workflow with our AI-powered SaaS platform.</p>
+        <div class="visual-badge mb-4">
+          <i class="bi bi-stars"></i>
+          <span>Smart ERP Workspace</span>
+        </div>
+        <h2 class="display-6 fw-bold mb-3">Run every school workflow from one modern dashboard</h2>
+        <p class="lead opacity-75">Bring admissions, academics, finance, exams, and library operations into a single connected platform.</p>
+        <div class="visual-points">
+          <div><i class="bi bi-check-circle-fill"></i><span>Role based access for staff, students, and parents</span></div>
+          <div><i class="bi bi-check-circle-fill"></i><span>Live dashboards for attendance, finance, and academics</span></div>
+          <div><i class="bi bi-check-circle-fill"></i><span>Centralized ERP modules in one secure workspace</span></div>
+        </div>
+        <div class="visual-metrics">
+          <div>
+            <strong>98%</strong>
+            <span>Tasks tracked</span>
+          </div>
+          <div>
+            <strong>24/7</strong>
+            <span>Access</span>
+          </div>
+          <div>
+            <strong>6+</strong>
+            <span>Modules</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>

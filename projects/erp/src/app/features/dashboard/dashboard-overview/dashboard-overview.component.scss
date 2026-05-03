@@ -1,0 +1,89 @@
+@import "assets/scss/variables";
+
+.stat-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.stat-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.stat-icon-primary { background: rgba($primary, 0.12); color: $primary; }
+.stat-icon-success { background: rgba($success, 0.12); color: $success; }
+.stat-icon-warning { background: rgba($warning, 0.14); color: $warning; }
+.stat-icon-danger { background: rgba($danger, 0.12); color: $danger; }
+
+.attendance-meter {
+  height: 14px;
+  border-radius: 999px;
+  overflow: hidden;
+  display: flex;
+  background: #e2e8f0;
+}
+
+.meter-present { background: $success; }
+.meter-late { background: $warning; }
+.meter-absent { background: $danger; }
+
+.metric-box {
+  padding: 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-radius: 0.75rem;
+  background: #fff;
+}
+
+.activity-item {
+  display: flex;
+  gap: 0.875rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+
+  &:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+.activity-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba($primary, 0.1);
+  color: $primary;
+  flex: 0 0 auto;
+}
+
+.smaller {
+  font-size: 0.75rem;
+}
+
+:host-context([data-bs-theme="dark"]) {
+  .metric-box {
+    background: #1f2937;
+    border-color: rgba(255, 255, 255, 0.08);
+    color: #f8fafc;
+  }
+
+  .attendance-meter {
+    background: #475569;
+  }
+
+  .activity-item {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+  }
+}
