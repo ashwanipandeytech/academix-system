@@ -1,0 +1,79 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h3 class="fw-bold mb-0">Students Management</h3>
+    <p class="text-muted">Manage your school's student records</p>
+  </div>
+  <div class="d-flex gap-2">
+    <button class="btn btn-outline-primary border-2 px-4 py-2">
+      <i class="bi bi-download me-2"></i> Export
+    </button>
+    <button class="btn btn-primary px-4 py-2">
+      <i class="bi bi-plus-lg me-2"></i> Add Student
+    </button>
+  </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+  <div class="card-header border-0 bg-transparent p-4">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="input-group">
+          <span class="input-group-text bg-light border-0"><i class="bi bi-search"></i></span>
+          <input type="text" class="form-control bg-light border-0" placeholder="Search by name, ID..." (input)="onSearch($event)">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <select class="form-select bg-light border-0">
+          <option selected>Filter by Class</option>
+          <option>Grade 10-A</option>
+          <option>Grade 9-B</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="card-body p-0">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="bg-light">
+          <tr>
+            <th class="px-4">Student ID</th>
+            <th>Name</th>
+            <th>Class</th>
+            <th>Parent</th>
+            <th>Phone</th>
+            <th>Status</th>
+            <th class="text-end px-4">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (student of filteredStudents(); track student.id) {
+            <tr>
+              <td class="px-4 fw-bold text-primary">{{student.id}}</td>
+              <td>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="avatar bg-primary-subtle text-primary">{{student.name.charAt(0)}}</div>
+                  <div>
+                    <p class="mb-0 fw-bold">{{student.name}}</p>
+                    <p class="smaller text-muted mb-0">{{student.email}}</p>
+                  </div>
+                </div>
+              </td>
+              <td>{{student.class}}</td>
+              <td>{{student.parent}}</td>
+              <td>{{student.phone}}</td>
+              <td>
+                <span class="badge" [ngClass]="{
+                  'bg-success-subtle text-success': student.status === 'Active',
+                  'bg-warning-subtle text-warning': student.status === 'Pending'
+                }">{{student.status}}</span>
+              </td>
+              <td class="text-end px-4">
+                <button class="btn btn-light btn-sm border"><i class="bi bi-three-dots-vertical"></i></button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

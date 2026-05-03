@@ -1,0 +1,40 @@
+<aside class="sidebar">
+  <div class="p-4 d-flex align-items-center gap-3">
+    <div class="brand-bg">
+      <i class="bi bi-mortarboard-fill"></i>
+    </div>
+    <span class="fw-bold fs-4">Academix</span>
+  </div>
+
+  <nav class="nav flex-column mt-3">
+    <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-grid-fill"></i>
+      <span>Dashboard</span>
+    </a>
+    <a routerLink="/students" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-people-fill"></i>
+      <span>Students</span>
+    </a>
+    <a routerLink="/teachers" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-person-badge-fill"></i>
+      <span>Teachers</span>
+    </a>
+    <a routerLink="/fees" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-wallet2"></i>
+      <span>Fees & Finance</span>
+    </a>
+    <a routerLink="/exams" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-journal-text"></i>
+      <span>Exams</span>
+    </a>
+    <a routerLink="/library" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-book-half"></i>
+      <span>Library</span>
+    </a>
+    <hr class="mx-4 my-3 text-secondary opacity-25">
+    <a href="#" (click)="authService.logout()" class="nav-link text-danger">
+      <i class="bi bi-box-arrow-right"></i>
+      <span>Logout</span>
+    </a>
+  </nav>
+</aside>

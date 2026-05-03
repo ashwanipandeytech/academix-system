@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    initCustomSelects();
+    
     const loginForm = document.getElementById('loginForm');
     const signupForm = document.getElementById('signupForm');
     const otpForm = document.getElementById('otpForm');
@@ -86,6 +88,32 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         localStorage.setItem('academix_user', JSON.stringify(user));
         window.location.href = './index.html';
+    }
+
+    function initCustomSelects() {
+        const dropdowns = document.querySelectorAll('.custom-select-dropdown');
+        dropdowns.forEach(dropdown => {
+            const button = dropdown.querySelector('button');
+            const selectedText = button.querySelector('.selected-value');
+            const hiddenInput = dropdown.querySelector('input[type="hidden"]');
+            const items = dropdown.querySelectorAll('.dropdown-item');
+
+            items.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const value = item.getAttribute('data-value');
+                    const text = item.textContent;
+
+                    // Update UI
+                    selectedText.textContent = text;
+                    hiddenInput.value = value;
+
+                    // Update active state
+                    items.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                });
+            });
+        });
     }
 });
 

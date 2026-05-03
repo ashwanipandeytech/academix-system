@@ -1,6 +1,7 @@
 import { getCurrentUser, logout } from './auth.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+    initCustomSelects();
     // Check Authentication
     const user = getCurrentUser();
     if (!user && !window.location.pathname.includes('login.html')) {
@@ -85,4 +86,34 @@ function renderSidebarByRole(role) {
 
     // Re-bind logout after dynamic injection
     document.getElementById('logoutBtn').addEventListener('click', (e) => { e.preventDefault(); logout(); });
+}
+
+function initCustomSelects() {
+    const dropdowns = document.querySelectorAll('.custom-select-dropdown');
+    dropdowns.forEach(dropdown => {
+        const button = dropdown.querySelector('button');
+        const selectedText = button.querySelector('.selected-value');
+        const hiddenInput = dropdown.querySelector('input[type="hidden"]');
+        const items = dropdown.querySelectorAll('.dropdown-item');
+
+        items.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const value = item.getAttribute('data-value');
+                const text = item.textContent;
+
+                // Update UI
+                selectedText.textContent = text;
+                if (hiddenInput) hiddenInput.value = value;
+
+                // Update active state
+                items.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                
+                // Trigger change event if needed
+                const event = new CustomEvent('change', { detail: { value: value } });
+                dropdown.dispatchEvent(event);
+            });
+        });
+    });
 }

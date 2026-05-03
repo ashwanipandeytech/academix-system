@@ -94,6 +94,42 @@
 .bg-gradient-warning { @include gradient-bg($warning-gradient); }
 .bg-gradient-danger  { @include gradient-bg($danger-gradient); }
 
+// Custom Select Dropdowns
+.custom-select-dropdown {
+  .btn {
+    background-color: #fff;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition: all 0.2s;
+    
+    &:hover, &:focus {
+      background-color: $light;
+      border-color: $primary;
+    }
+  }
+
+  .dropdown-menu {
+    padding: 0.5rem;
+    
+    .dropdown-item {
+      border-radius: 0.5rem;
+      padding: 0.6rem 1rem;
+      font-weight: 500;
+      color: $secondary;
+
+      &:hover {
+        background-color: rgba($primary, 0.05);
+        color: $primary;
+      }
+
+      &.active {
+        background-color: $primary;
+        color: #fff;
+      }
+    }
+  }
+}
+
 // Stats Cards
 .stat-card {
   .icon-shape {

@@ -1,0 +1,117 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <!-- Form Section -->
+    <div class="auth-form-section">
+      <div class="mb-4">
+        <div class="brand-icon mb-3">
+          <i class="bi bi-mortarboard-fill"></i>
+        </div>
+        <h3 class="fw-bold">Welcome to Academix</h3>
+        <p class="text-muted">Manage your school with ease.</p>
+      </div>
+
+      <!-- Tab Switcher -->
+      @if (!showOtp()) {
+        <ul class="nav nav-pills nav-pills-auth nav-justified mb-4">
+          <li class="nav-item">
+            <button class="nav-link" [class.active]="activeTab() === 'login'" (click)="setTab('login')">Login</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" [class.active]="activeTab() === 'signup'" (click)="setTab('signup')">Sign Up</button>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <!-- Login Flow -->
+          @if (activeTab() === 'login') {
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="fade-in">
+              <div class="form-floating mb-3">
+                <select class="form-select" id="userRole" formControlName="role">
+                  <option value="admin">Administrator</option>
+                  <option value="teacher">Teacher</option>
+                  <option value="student">Student</option>
+                  <option value="parent">Parent</option>
+                </select>
+                <label for="userRole">Your Role</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="loginEmail" placeholder="name@school.com" formControlName="email">
+                <label for="loginEmail">Email Address</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="loginPassword" placeholder="Password" formControlName="password">
+                <label for="loginPassword">Password</label>
+              </div>
+              
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="rememberMe">
+                  <label class="form-check-label small" for="rememberMe">Remember me</label>
+                </div>
+                <a href="#" class="small text-primary text-decoration-none fw-medium">Forgot password?</a>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100 py-3 fw-bold mb-3">Sign In</button>
+              <button type="button" class="btn btn-light w-100 py-2 border small fw-medium" (click)="toggleOtp()">Login with OTP instead</button>
+            </form>
+          }
+
+          <!-- Sign Up Flow -->
+          @if (activeTab() === 'signup') {
+            <form [formGroup]="signupForm" (ngSubmit)="onSignup()" class="fade-in">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="signupName" placeholder="Full Name" formControlName="name">
+                <label for="signupName">Full Name</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="signupEmail" placeholder="Email" formControlName="email">
+                <label for="signupEmail">Email Address</label>
+              </div>
+              <div class="form-floating mb-3">
+                <select class="form-select" id="signupRole" formControlName="role">
+                  <option value="teacher">Teacher</option>
+                  <option value="student">Student</option>
+                  <option value="parent">Parent</option>
+                </select>
+                <label for="signupRole">Select Role</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="signupPassword" placeholder="Password" formControlName="password">
+                <label for="signupPassword">Password</label>
+              </div>
+              <button type="submit" class="btn btn-primary w-100 py-3 fw-bold">Create Account</button>
+            </form>
+          }
+        </div>
+      }
+
+      <!-- OTP Flow -->
+      @if (showOtp()) {
+        <div class="otp-container fade-in">
+          <div class="text-center mb-4">
+            <div class="otp-icon mb-3"><i class="bi bi-shield-lock-fill"></i></div>
+            <h4 class="fw-bold">Security Verification</h4>
+            <p class="text-muted">Enter the 4-digit code sent to your email.</p>
+          </div>
+          <div class="d-flex justify-content-center gap-3 mb-4">
+            <input type="text" class="form-control text-center fs-2 fw-bold" maxlength="1" style="width: 60px; height: 70px;">
+            <input type="text" class="form-control text-center fs-2 fw-bold" maxlength="1" style="width: 60px; height: 70px;">
+            <input type="text" class="form-control text-center fs-2 fw-bold" maxlength="1" style="width: 60px; height: 70px;">
+            <input type="text" class="form-control text-center fs-2 fw-bold" maxlength="1" style="width: 60px; height: 70px;">
+          </div>
+          <button class="btn btn-primary w-100 py-3 fw-bold mb-3" (click)="onLogin()">Verify & Continue</button>
+          <button class="btn btn-link w-100 text-decoration-none small" (click)="toggleOtp()">Back to password login</button>
+        </div>
+      }
+    </div>
+
+    <!-- Visual Section -->
+    <div class="auth-visual-section">
+      <div class="visual-content">
+        <i class="bi bi-cpu fs-1 mb-4 d-block"></i>
+        <h2 class="display-6 fw-bold mb-3">The Future of Education Management</h2>
+        <p class="lead opacity-75">Streamline your school's workflow with our AI-powered SaaS platform.</p>
+      </div>
+    </div>
+  </div>
+</div>

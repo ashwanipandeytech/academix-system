@@ -1,0 +1,16 @@
+@import "assets/scss/variables";
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.smaller {
+  font-size: 0.75rem;
+}

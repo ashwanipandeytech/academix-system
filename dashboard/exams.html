@@ -201,17 +201,28 @@
             <div class="card-body p-4 pt-0">
                 <div class="row g-3 mb-4">
                     <div class="col-md-3">
-                        <select class="form-select">
-                            <option>Select Exam</option>
-                            <option>Mid-term 2026</option>
-                            <option>Unit Test 2</option>
-                        </select>
+                        <div class="dropdown custom-select-dropdown">
+                            <button class="btn btn-light w-100 text-start d-flex justify-content-between align-items-center border py-2" type="button" data-bs-toggle="dropdown">
+                                <span class="selected-value">Select Exam</span>
+                                <i class="bi bi-chevron-down small"></i>
+                            </button>
+                            <ul class="dropdown-menu w-100 shadow-sm border-0">
+                                <li><a class="dropdown-item" href="#" data-value="midterm2026">Mid-term 2026</a></li>
+                                <li><a class="dropdown-item" href="#" data-value="unittest2">Unit Test 2</a></li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="col-md-3">
-                        <select class="form-select">
-                            <option>Select Class</option>
-                            <option>Grade 10-A</option>
-                        </select>
+                        <div class="dropdown custom-select-dropdown">
+                            <button class="btn btn-light w-100 text-start d-flex justify-content-between align-items-center border py-2" type="button" data-bs-toggle="dropdown">
+                                <span class="selected-value">Select Class</span>
+                                <i class="bi bi-chevron-down small"></i>
+                            </button>
+                            <ul class="dropdown-menu w-100 shadow-sm border-0">
+                                <li><a class="dropdown-item" href="#" data-value="10a">Grade 10-A</a></li>
+                                <li><a class="dropdown-item" href="#" data-value="9b">Grade 9-B</a></li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="col-md-3">
                         <button class="btn btn-primary w-100">Load Students</button>

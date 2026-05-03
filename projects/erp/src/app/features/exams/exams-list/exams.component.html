@@ -1,0 +1,28 @@
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h3 class="fw-bold mb-0">Exams & Grading</h3>
+  <button class="btn btn-primary px-4">Schedule Exam</button>
+</div>
+
+<div class="card border-0 shadow-sm">
+  <div class="card-body p-4">
+    <div class="list-group list-group-flush">
+      @for (exam of exams; track exam.name) {
+        <div class="list-group-item px-0 py-3 border-0 border-bottom">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex gap-3">
+              <div class="bg-primary-subtle text-primary rounded px-3 py-2 text-center" style="min-width: 60px;">
+                <div class="small fw-bold">MAY</div>
+                <div class="fs-5 fw-bold">{{exam.date.split(' ')[1]}}</div>
+              </div>
+              <div>
+                <h6 class="fw-bold mb-0">{{exam.name}}</h6>
+                <p class="smaller text-muted mb-0">{{exam.class}}</p>
+              </div>
+            </div>
+            <span class="badge bg-light text-dark border">{{exam.status}}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>
