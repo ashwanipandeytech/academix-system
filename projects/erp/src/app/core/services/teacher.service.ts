@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseDataService } from './base-data.service';
 import { Teacher } from '../models/erp.models';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class TeacherService extends BaseDataService<Teacher> {
   constructor() {
     super('teachers');

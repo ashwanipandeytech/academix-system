@@ -4,12 +4,26 @@ import { MainLayoutComponent } from './core/layouts/main-layout/main-layout';
 import { authGuard } from './core/guards/auth.guard';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { StudentService } from './core/services/student.service';
+import { TeacherService } from './core/services/teacher.service';
+import { AcademicClassService } from './core/services/academic-class.service';
+import { FeeService } from './core/services/fee.service';
+import { BookService } from './core/services/book.service';
+import { ExamService } from './core/services/exam.service';
+import { ProductService } from './core/services/product.service';
+import { NotificationService } from './core/services/notification.service';
+
+const ERP_PROVIDERS = [
+  provideFirestore(() => getFirestore()),
+  StudentService, TeacherService, AcademicClassService, FeeService,
+  BookService, ExamService, ProductService, NotificationService
+];
 
 export const ERP_ROUTES: Routes = [
   {
     path: 'auth',
     component: AuthLayoutComponent,
-    providers: [provideFirestore(() => getFirestore())],
+    providers: ERP_PROVIDERS,
     children: [
       {
         path: 'login',
@@ -28,7 +42,7 @@ export const ERP_ROUTES: Routes = [
     canActivate: [authGuard],
     providers: [
       provideCharts(withDefaultRegisterables()),
-      provideFirestore(() => getFirestore())
+      ...ERP_PROVIDERS
     ],
     children: [
       {
