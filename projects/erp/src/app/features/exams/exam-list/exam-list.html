@@ -1,0 +1,12 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800 fw-bold">Exam Management</h1>
+  <button class="btn btn-primary shadow-sm">
+    <i class="bi bi-plus-lg me-1"></i> Create Exam
+  </button>
+</div>
+
+<app-data-table
+  title="Exams List"
+  [columns]="columns"
+  [data]="exams"
+></app-data-table>

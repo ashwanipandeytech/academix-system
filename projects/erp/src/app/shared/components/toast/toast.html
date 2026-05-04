@@ -1,0 +1,18 @@
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1200">
+  <div *ngFor="let toast of toastService.toasts$ | async" 
+       class="toast show mb-2" 
+       [class.bg-success]="toast.type === 'success'"
+       [class.bg-danger]="toast.type === 'danger'"
+       [class.bg-info]="toast.type === 'info'"
+       [class.bg-warning]="toast.type === 'warning'"
+       role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header" *ngIf="toast.title">
+      <strong class="me-auto">{{ toast.title }}</strong>
+      <button type="button" class="btn-close" (click)="toastService.remove(toast)" aria-label="Close"></button>
+    </div>
+    <div class="toast-body text-white d-flex justify-content-between">
+      {{ toast.message }}
+      <button *ngIf="!toast.title" type="button" class="btn-close btn-close-white" (click)="toastService.remove(toast)" aria-label="Close"></button>
+    </div>
+  </div>
+</div>

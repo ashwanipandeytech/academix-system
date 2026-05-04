@@ -68,6 +68,12 @@
               "sourceMap": true
             },
             "production-ssr": {
+              "outputHashing": "all",
+              "server": "projects/erp/src/main.server.ts",
+              "outputMode": "server",
+              "ssr": {
+                "entry": "projects/erp/src/server.ts"
+              },
               "budgets": [
                 {
                   "type": "initial",
@@ -79,13 +85,7 @@
                   "maximumWarning": "4kB",
                   "maximumError": "8kB"
                 }
-              ],
-              "outputHashing": "all",
-              "server": "projects/erp/src/main.server.ts",
-              "outputMode": "server",
-              "ssr": {
-                "entry": "projects/erp/src/server.ts"
-              }
+              ]
             },
             "development-ssr": {
               "optimization": false,
@@ -100,6 +100,7 @@
           },
           "defaultConfiguration": "production"
         },
+
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
@@ -107,14 +108,19 @@
               "buildTarget": "erp:build:production"
             },
             "development": {
+              "buildTarget": "erp:build:development"
+            },
+            "development-ssr": {
               "buildTarget": "erp:build:development-ssr"
             }
           },
           "defaultConfiguration": "development"
         },
+
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
         },
+
         "test": {
           "builder": "@angular/build:karma",
           "options": {

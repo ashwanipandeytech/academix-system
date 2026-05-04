@@ -1,0 +1,10 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+  <h1 class="h3 mb-0 text-gray-800 fw-bold">Student Management</h1>
+</div>
+
+<app-data-table 
+  title="All Students" 
+  [columns]="columns"
+  [data]="(students$ | async) || []"
+  (actionClicked)="onAction($event)">
+</app-data-table>

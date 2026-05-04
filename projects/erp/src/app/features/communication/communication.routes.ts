@@ -1,0 +1,1 @@
+import { Routes } from '@angular/router'; export const COMMUNICATION_ROUTES: Routes = [{ path: '', loadComponent: () => import('./notification-center/notification-center').then(m => m.NotificationCenterComponent) }];
