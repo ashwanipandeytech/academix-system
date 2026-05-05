@@ -24,6 +24,11 @@
             "browser": "projects/erp/src/main.ts",
             "tsConfig": "projects/erp/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/erp/src"
+              ]
+            },
             "assets": [
               {
                 "glob": "**/*",
@@ -120,6 +125,11 @@
           "options": {
             "tsConfig": "projects/erp/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/erp/src"
+              ]
+            },
             "assets": [
               {
                 "glob": "**/*",

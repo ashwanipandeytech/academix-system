@@ -44,7 +44,7 @@ export class DashboardComponent {
     maintainAspectRatio: false,
     scales: {
       x: { grid: { display: false } },
-      y: { ticks: { callback: (value) => '$' + value } }
+      y: { ticks: { callback: (value: string | number) => '$' + value } }
     },
     plugins: { legend: { display: false } }
   };
