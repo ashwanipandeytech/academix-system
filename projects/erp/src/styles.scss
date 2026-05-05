@@ -1,163 +1,132 @@
-@import "assets/scss/variables";
+/* You can add global styles to this file, and also import other style files */
+// Custom Variables
+$primary: #4e73df;
+$secondary: #858796;
+$success: #1cc88a;
+$info: #36b9cc;
+$warning: #f6c23e;
+$danger: #e74a3b;
+$light: #f8f9fc;
+$dark: #5a5c69;
 
-// Bootstrap
-@import "bootstrap/scss/bootstrap";
+// Bootstrap Icons
+@import "bootstrap-icons/font/bootstrap-icons.css";
 
-// Global Theme Styles
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: $light;
-  color: $dark;
-  overflow-x: hidden;
+// Bootstrap Essential Parts Only (To stay under budget)
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/tables";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar";
+@import "bootstrap/scss/card";
+@import "bootstrap/scss/accordion";
+@import "bootstrap/scss/breadcrumb";
+@import "bootstrap/scss/pagination";
+@import "bootstrap/scss/badge";
+@import "bootstrap/scss/alert";
+@import "bootstrap/scss/progress";
+@import "bootstrap/scss/list-group";
+@import "bootstrap/scss/close";
+@import "bootstrap/scss/toasts";
+@import "bootstrap/scss/modal";
+@import "bootstrap/scss/tooltip";
+@import "bootstrap/scss/popover";
+@import "bootstrap/scss/carousel";
+@import "bootstrap/scss/spinners";
+@import "bootstrap/scss/offcanvas";
+@import "bootstrap/scss/placeholders";
+@import "bootstrap/scss/helpers";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/utilities/api";
+
+// Global Styles
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #f8f9fc;
 }
 
-// Dark Mode Support
-[data-bs-theme="dark"] {
-  body {
-    background-color: #1e293b;
-    color: #f1f5f9;
-  }
-
-  .content-area {
-    background: #1e293b;
-  }
-
-  .card {
-    background-color: #334155;
-    border-color: rgba(255, 255, 255, 0.1);
-    color: #f1f5f9;
-  }
-
-  .text-muted {
-    color: #cbd5e1 !important;
-  }
-
-  .bg-light {
-    background-color: #26364a !important;
-  }
-
-  .table {
-    --bs-table-color: #f8fafc;
-    --bs-table-bg: transparent;
-    --bs-table-hover-color: #ffffff;
-    --bs-table-hover-bg: rgba(99, 102, 241, 0.12);
-    border-color: rgba(255, 255, 255, 0.08);
-  }
-
-  .btn-light {
-    background-color: #26364a !important;
-    border-color: rgba(255, 255, 255, 0.1) !important;
-    color: #f8fafc !important;
-  }
-
-  .input-group-text,
-  .form-control {
-    color: #f8fafc;
-  }
-
-  .dropdown-toggle {
-    background: #26364a !important;
-    color: #f8fafc;
-    border-color: rgba(255, 255, 255, 0.1) !important;
-
-    &:hover,
-    &:focus,
-    &.show {
-      background: #334155 !important;
-      border-color: rgba(129, 140, 248, 0.5) !important;
-    }
-  }
-
-  .dropdown-menu {
-    background: #1f2937;
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .dropdown-item {
-    color: #f8fafc;
-
-    &:hover,
-    &:focus {
-      background: rgba(99, 102, 241, 0.2);
-      color: #ffffff;
-    }
-  }
-
-  .badge.bg-light,
-  .badge.text-dark {
-    background-color: #26364a !important;
-    color: #f8fafc !important;
-    border-color: rgba(255, 255, 255, 0.1) !important;
-  }
+.bg-gradient-primary {
+  background-color: #4e73df;
+  background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+  background-size: cover;
 }
 
-// Global Utilities
-.bg-gradient-primary { background: $primary-gradient; color: white; border: none; }
-.bg-gradient-success { background: $success-gradient; color: white; border: none; }
-.bg-gradient-warning { background: $warning-gradient; color: white; border: none; }
-.bg-gradient-danger  { background: $danger-gradient; color: white; border: none; }
-
-.btn-primary {
-  background: $primary-gradient;
-  border: none;
-  color: white !important;
-  &:hover { opacity: 0.9; }
+// Global Landing & Animation Utilities
+:root {
+  --primary-color: #4e73df;
+  --primary-dark: #2e59d9;
+  --secondary-color: #1cc88a;
+  --dark-color: #1a1d23;
+  --light-bg: #f8f9fc;
+  --font-family-base: 'Inter', sans-serif;
+  --font-family-heading: 'Poppins', sans-serif;
 }
 
-.cursor-pointer { cursor: pointer; }
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  &.active { opacity: 1; transform: translateY(0); }
+}
 
-// Modern dropdown controls
-.dropdown-toggle {
-  min-height: 42px;
-  border-color: rgba(99, 102, 241, 0.12) !important;
-  background: #f8fafc !important;
-  color: $dark;
-  box-shadow: none;
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  &.active { opacity: 1; transform: translateX(0); }
+}
 
-  &::after {
-    display: none;
-  }
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  &.active { opacity: 1; transform: translateX(0); }
+}
 
-  &:hover,
-  &:focus,
-  &.show {
-    background: #fff !important;
-    border-color: rgba(99, 102, 241, 0.35) !important;
-    box-shadow: 0 0 0 0.2rem rgba(99, 102, 241, 0.12);
+.transition-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
   }
 }
 
-.dropdown-chevron {
-  color: $secondary;
-  font-size: 0.875rem;
-  transition: transform 0.2s ease, color 0.2s ease;
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
 }
 
-.dropdown-toggle.show .dropdown-chevron {
-  color: $primary;
-  transform: rotate(180deg);
+@keyframes pulse {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.3; }
+  100% { transform: scale(1.2) translate(30px, 30px); opacity: 0.5; }
 }
 
-.dropdown-menu {
-  padding: 0.45rem;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 0.75rem;
-  box-shadow: 0 1rem 2rem rgba(15, 23, 42, 0.12);
+.btn-hover-glow:hover {
+  box-shadow: 0 0 20px rgba(78, 115, 223, 0.6);
 }
 
-.dropdown-item {
-  border-radius: 0.55rem;
-  padding: 0.65rem 0.8rem;
-  font-weight: 500;
-
-  &:hover,
-  &:focus {
-    background: rgba(99, 102, 241, 0.08);
-    color: $primary;
-  }
-
-  &.active {
-    background: $primary-gradient;
-    color: white;
-  }
+// Custom Scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #4e73df;
+  border-radius: 10px;
 }

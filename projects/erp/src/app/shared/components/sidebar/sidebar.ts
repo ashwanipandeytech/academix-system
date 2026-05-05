@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/auth.service';
@@ -10,19 +10,11 @@ import { AuthService } from '../../../core/services/auth.service';
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss'
 })
-export class SidebarComponent implements OnInit {
-  userRole: string | null = null;
-
-  constructor(private authService: AuthService) {}
-
-  ngOnInit() {
-    this.authService.currentUser.subscribe(user => {
-      this.userRole = user ? user.role : null;
-    });
-  }
+export class SidebarComponent {
+  constructor(public authService: AuthService) {}
 
   hasAccess(menu: string): boolean {
-    const role = this.userRole?.toLowerCase();
+    const role = this.authService.currentUser()?.role?.toLowerCase();
     
     // Admins and SuperAdmins see everything
     if (!role || role === 'admin' || role === 'superadmin') {

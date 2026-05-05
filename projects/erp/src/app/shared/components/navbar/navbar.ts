@@ -16,6 +16,6 @@ export class NavbarComponent {
 
   logout() {
     this.authService.logout();
-    this.router.navigate(['/erp/auth/login']);
+    this.router.navigate(['/login']);
   }
 }

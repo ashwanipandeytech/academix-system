@@ -1,5 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Component, PLATFORM_ID, effect, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class TopbarComponent {
   private platformId = inject(PLATFORM_ID);
+  private router = inject(Router);
   authService = inject(AuthService);
   currentUser = this.authService.currentUser;
   theme = signal<'light' | 'dark'>(this.getSavedTheme());
@@ -32,6 +34,11 @@ export class TopbarComponent {
 
   toggleTheme() {
     this.theme.update(current => current === 'light' ? 'dark' : 'light');
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
   private getSavedTheme(): 'light' | 'dark' {

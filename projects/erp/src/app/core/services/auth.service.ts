@@ -36,8 +36,14 @@ export class AuthService {
       return null;
     }
 
-    const saved = localStorage.getItem(this.userKey);
-    return saved ? JSON.parse(saved) : null;
+    try {
+      const saved = localStorage.getItem(this.userKey);
+      return saved ? JSON.parse(saved) : null;
+    } catch (e) {
+      console.error('Error parsing saved user from localStorage', e);
+      localStorage.removeItem(this.userKey);
+      return null;
+    }
   }
 
   private isBrowser(): boolean {

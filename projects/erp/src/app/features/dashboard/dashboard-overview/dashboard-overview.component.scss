@@ -1,4 +1,4 @@
-@import "assets/scss/variables";
+@use "assets/scss/variables" as *;
 
 .stat-card {
   transition: transform 0.2s ease, box-shadow 0.2s ease;

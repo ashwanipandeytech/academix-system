@@ -15,7 +15,11 @@ export class LoginComponent {
   private router = inject(Router);
 
   onQuickLogin(role: string) {
-    this.authService.login(role);
+    this.authService.login({
+      name: `Demo ${role}`,
+      email: `${role.toLowerCase()}@example.com`,
+      role: role
+    });
     this.router.navigate(['/erp/dashboard']);
   }
 }

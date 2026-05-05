@@ -77,7 +77,7 @@ export class PlanRegistrationComponent implements OnInit {
       
       // Auto-redirect after 3 seconds for better UX
       setTimeout(() => {
-        this.router.navigate(['/erp/auth/login']);
+        this.router.navigate(['/login']);
       }, 3000);
 
     } catch (error: any) {

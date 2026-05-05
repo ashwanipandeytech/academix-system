@@ -3,8 +3,17 @@ import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    loadComponent: () => import('./features/landing/landing').then(m => m.LandingComponent)
+  },
+  {
     path: 'login',
     loadComponent: () => import('./features/auth/login/login.component').then(m => m.LoginComponent)
+  },
+  {
+    path: 'register-plan/:planName',
+    loadChildren: () => import('./registration.routes').then(m => m.REGISTRATION_ROUTES)
   },
   {
     path: '',
@@ -34,11 +43,6 @@ export const routes: Routes = [
       {
         path: 'library',
         loadComponent: () => import('./features/library/library-list/library.component').then(m => m.LibraryComponent)
-      },
-      {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full'
       }
     ]
   }
