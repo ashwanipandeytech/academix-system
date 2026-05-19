@@ -1,0 +1,105 @@
+<div class="operations-page">
+  <section class="page-hero">
+    <div class="hero-copy">
+      <span class="eyebrow">{{ page().eyebrow }}</span>
+      <h3>{{ page().title }}</h3>
+      <p>{{ page().subtitle }}</p>
+    </div>
+    <div class="hero-actions">
+      <div class="range-switch">
+        @for (range of ranges; track range) {
+          <button type="button" [class.active]="selectedRange() === range" (click)="setRange(range)">
+            {{ range }}
+          </button>
+        }
+      </div>
+      <button type="button" class="btn btn-primary px-4">
+        <i class="bi me-2" [ngClass]="page().icon"></i>{{ page().action }}
+      </button>
+    </div>
+  </section>
+
+  <section class="stats-grid">
+    @for (stat of page().stats; track stat.label) {
+      <article class="stat-card">
+        <div>
+          <p>{{ stat.label }}</p>
+          <strong>{{ stat.value }}</strong>
+          <span>{{ stat.trend }}</span>
+        </div>
+        <div class="stat-icon" [ngClass]="'tone-' + stat.tone">
+          <i class="bi" [ngClass]="stat.icon"></i>
+        </div>
+      </article>
+    }
+  </section>
+
+  <section class="content-grid">
+    <article class="panel main-panel">
+      <div class="panel-header">
+        <div>
+          <h5>Priority Workspace</h5>
+          <p>High-signal records for {{ selectedRange().toLowerCase() }}</p>
+        </div>
+        <span class="status-pill">Live</span>
+      </div>
+
+      <div class="record-list">
+        @for (record of page().records; track record.title) {
+          <div class="record-row">
+            <div class="record-title">
+              <span class="record-mark" [ngClass]="'tone-' + record.statusTone"></span>
+              <div>
+                <strong>{{ record.title }}</strong>
+                <p>{{ record.meta }}</p>
+              </div>
+            </div>
+            <span class="owner">{{ record.owner }}</span>
+            <span class="badge rounded-pill" [ngClass]="'badge-' + record.statusTone">{{ record.status }}</span>
+            <strong class="record-value">{{ record.value }}</strong>
+          </div>
+        }
+      </div>
+    </article>
+
+    <article class="panel">
+      <div class="panel-header compact">
+        <div>
+          <h5>Progress</h5>
+          <p>Module health</p>
+        </div>
+      </div>
+
+      <div class="progress-stack">
+        @for (item of page().pipeline; track item.label) {
+          <div>
+            <div class="d-flex justify-content-between small fw-semibold mb-2">
+              <span>{{ item.label }}</span>
+              <span>{{ item.value }}%</span>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" [ngClass]="'bar-' + item.tone" [style.width.%]="item.value"></div>
+            </div>
+          </div>
+        }
+      </div>
+    </article>
+  </section>
+
+  <section class="panel quick-panel">
+    <div class="panel-header compact">
+      <div>
+        <h5>Quick Actions</h5>
+        <p>Common tasks for this module</p>
+      </div>
+    </div>
+    <div class="quick-grid">
+      @for (action of page().quickActions; track action) {
+        <button type="button" class="quick-action">
+          <i class="bi bi-lightning-charge-fill"></i>
+          <span>{{ action }}</span>
+        </button>
+      }
+    </div>
+  </section>
+</div>

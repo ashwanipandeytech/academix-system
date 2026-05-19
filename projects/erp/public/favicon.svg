@@ -1,13 +1,16 @@
 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="64" height="64" rx="16" fill="url(#paint0_linear_1_2)"/>
-  <path d="M32 15L13 24.5L32 34L51 24.5L32 15Z" fill="white"/>
-  <path d="M20.5 30.5V40.5C20.5 44.1 25.6 47 32 47C38.4 47 43.5 44.1 43.5 40.5V30.5L32 36.25L20.5 30.5Z" fill="white" fill-opacity="0.92"/>
-  <path d="M49 27V38" stroke="white" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="49" cy="43" r="3" fill="white"/>
+  <rect width="64" height="64" rx="14" fill="url(#academix-bg)"/>
+  <circle cx="49" cy="15" r="8" fill="#22C55E"/>
+  <path d="M32 13.5L12 23.5L32 33.5L52 23.5L32 13.5Z" fill="white"/>
+  <path d="M19.5 29.5V40.25C19.5 44.25 25 47.5 32 47.5C39 47.5 44.5 44.25 44.5 40.25V29.5L32 35.75L19.5 29.5Z" fill="white" fill-opacity="0.92"/>
+  <path d="M49 26.5V38.5" stroke="white" stroke-width="3.2" stroke-linecap="round"/>
+  <circle cx="49" cy="44" r="3.3" fill="white"/>
+  <path d="M32 18.5L42 23.5L32 28.5L22 23.5L32 18.5Z" fill="#6366F1" fill-opacity="0.16"/>
   <defs>
-    <linearGradient id="paint0_linear_1_2" x1="8" y1="5" x2="58" y2="60" gradientUnits="userSpaceOnUse">
+    <linearGradient id="academix-bg" x1="8" y1="5" x2="58" y2="60" gradientUnits="userSpaceOnUse">
       <stop stop-color="#6366F1"/>
-      <stop offset="1" stop-color="#A855F7"/>
+      <stop offset="0.55" stop-color="#8B5CF6"/>
+      <stop offset="1" stop-color="#22C55E"/>
     </linearGradient>
   </defs>
 </svg>

@@ -1,13 +1,13 @@
-import { Component, signal } from '@angular/core';
+import { Component, HostListener, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -16,6 +16,10 @@ export class LoginComponent {
   signupForm: FormGroup;
   activeTab = signal<'login' | 'signup'>('login');
   showOtp = signal<boolean>(false);
+  loginRoleDropdownOpen = signal<boolean>(false);
+  signupRoleDropdownOpen = signal<boolean>(false);
+  selectedLoginRole = signal('admin');
+  selectedSignupRole = signal('teacher');
   loginRoles = [
     { value: 'admin', label: 'Administrator' },
     { value: 'teacher', label: 'Teacher' },
@@ -47,21 +51,39 @@ export class LoginComponent {
   setTab(tab: 'login' | 'signup') {
     this.activeTab.set(tab);
     this.showOtp.set(false);
+    this.closeRoleDropdowns();
   }
 
   toggleOtp() {
     this.showOtp.set(!this.showOtp());
+    this.closeRoleDropdowns();
+  }
+
+  toggleLoginRoleDropdown(event: MouseEvent) {
+    event.stopPropagation();
+    this.signupRoleDropdownOpen.set(false);
+    this.loginRoleDropdownOpen.update(open => !open);
+  }
+
+  toggleSignupRoleDropdown(event: MouseEvent) {
+    event.stopPropagation();
+    this.loginRoleDropdownOpen.set(false);
+    this.signupRoleDropdownOpen.update(open => !open);
   }
 
   setLoginRole(role: string) {
+    this.selectedLoginRole.set(role);
     this.loginForm.patchValue({ role });
+    this.closeRoleDropdowns();
   }
 
   setSignupRole(role: string) {
+    this.selectedSignupRole.set(role);
     this.signupForm.patchValue({ role });
+    this.closeRoleDropdowns();
   }
 
-  getRoleLabel(role: string | null | undefined) {
+  getRoleLabel(role: string) {
     return this.loginRoles.find(item => item.value === role)?.label ?? 'Select Role';
   }
 
@@ -83,5 +105,11 @@ export class LoginComponent {
       this.authService.login({ name, email, role });
       this.router.navigate(['/dashboard']);
     }
+  }
+
+  @HostListener('document:click')
+  closeRoleDropdowns() {
+    this.loginRoleDropdownOpen.set(false);
+    this.signupRoleDropdownOpen.set(false);
   }
 }

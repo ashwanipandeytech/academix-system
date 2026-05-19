@@ -7,29 +7,116 @@
   </div>
 
   <nav class="nav flex-column mt-3">
+    <span class="nav-section">Main</span>
     <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">
       <i class="bi bi-grid-fill"></i>
       <span>Dashboard</span>
+    </a>
+    <a routerLink="/subscriptions" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-gem"></i>
+      <span>Subscriptions</span>
+    </a>
+    <a routerLink="/admissions" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-person-plus-fill"></i>
+      <span>Admissions</span>
+    </a>
+
+    <span class="nav-section">School</span>
+    <a routerLink="/academic" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-diagram-3-fill"></i>
+      <span>Academic</span>
     </a>
     <a routerLink="/students" routerLinkActive="active" class="nav-link">
       <i class="bi bi-people-fill"></i>
       <span>Students</span>
     </a>
+    <a routerLink="/parents" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-person-hearts"></i>
+      <span>Parents</span>
+    </a>
     <a routerLink="/teachers" routerLinkActive="active" class="nav-link">
       <i class="bi bi-person-badge-fill"></i>
       <span>Teachers</span>
     </a>
+    <a routerLink="/staff" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-person-workspace"></i>
+      <span>HR & Staff</span>
+    </a>
+    <a routerLink="/attendance" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-qr-code-scan"></i>
+      <span>Attendance</span>
+    </a>
+    <a routerLink="/assignments" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-clipboard-check-fill"></i>
+      <span>Assignments</span>
+    </a>
+
+    <span class="nav-section">Operations</span>
     <a routerLink="/fees" routerLinkActive="active" class="nav-link">
       <i class="bi bi-wallet2"></i>
       <span>Fees & Finance</span>
+    </a>
+    <a routerLink="/accounting" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-bank2"></i>
+      <span>Accounting</span>
     </a>
     <a routerLink="/exams" routerLinkActive="active" class="nav-link">
       <i class="bi bi-journal-text"></i>
       <span>Exams</span>
     </a>
+    <a routerLink="/results" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-award-fill"></i>
+      <span>Results</span>
+    </a>
+    <a routerLink="/events" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-calendar-event-fill"></i>
+      <span>Events</span>
+    </a>
     <a routerLink="/library" routerLinkActive="active" class="nav-link">
       <i class="bi bi-book-half"></i>
       <span>Library</span>
+    </a>
+    <a routerLink="/inventory" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-box-seam-fill"></i>
+      <span>Inventory</span>
+    </a>
+    <a routerLink="/transport" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-bus-front-fill"></i>
+      <span>Transport</span>
+    </a>
+    <a routerLink="/hostel" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-house-heart-fill"></i>
+      <span>Hostel</span>
+    </a>
+    <a routerLink="/live-classes" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-camera-video-fill"></i>
+      <span>Live Classes</span>
+    </a>
+    <a routerLink="/communication" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-megaphone-fill"></i>
+      <span>Communication</span>
+    </a>
+    <a routerLink="/website" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-window-stack"></i>
+      <span>Website CMS</span>
+    </a>
+    <a routerLink="/support" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-life-preserver"></i>
+      <span>Support</span>
+    </a>
+
+    <span class="nav-section">System</span>
+    <a routerLink="/permissions" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-person-lock"></i>
+      <span>Permissions</span>
+    </a>
+    <a routerLink="/audit-logs" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-shield-check"></i>
+      <span>Audit Logs</span>
+    </a>
+    <a routerLink="/settings" routerLinkActive="active" class="nav-link">
+      <i class="bi bi-sliders2"></i>
+      <span>Settings</span>
     </a>
     <hr class="mx-4 my-3 text-secondary opacity-25">
     <a href="#" (click)="authService.logout()" class="nav-link text-danger">

@@ -53,4 +53,13 @@ export class AuthService {
   isLoggedIn(): boolean {
     return !!this.currentUser();
   }
+
+  resetPassword(email: string) {
+    console.log('Resetting password for:', email);
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({ success: true, message: 'Password reset link sent to your email.' });
+      }, 1500);
+    });
+  }
 }

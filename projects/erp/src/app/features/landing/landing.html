@@ -1,260 +1,206 @@
-<!-- Header -->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+<nav class="landing-nav navbar navbar-expand-lg fixed-top">
   <div class="container">
-    <a class="navbar-brand d-flex align-items-center fw-bold text-white" routerLink="/">
-      <i class="bi bi-mortarboard-fill fs-3 me-2 text-primary"></i>
-      <span style="font-family: 'Poppins', sans-serif; letter-spacing: -1px; font-size: 1.5rem;">EduERP</span>
+    <a class="navbar-brand" routerLink="/">
+      <span class="brand-mark"><i class="bi bi-mortarboard-fill"></i></span>
+      <span>Academix</span>
     </a>
-    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto align-items-center">
-        <li class="nav-item"><a class="nav-link px-3" href="#">Home</a></li>
-        <li class="nav-item"><a class="nav-link px-3" href="#about">About</a></li>
-        <li class="nav-item"><a class="nav-link px-3" href="#features">Modules</a></li>
-        <li class="nav-item"><a class="nav-link px-3" href="#pricing">Pricing</a></li>
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="#modules">Modules</a></li>
+        <li class="nav-item"><a class="nav-link" href="#workflow">Workflow</a></li>
+        <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         <li class="nav-item ms-lg-3">
-          <a class="btn btn-primary rounded-pill px-4 py-2 fw-bold shadow-sm btn-hover-glow" routerLink="/login">Login to ERP</a>
+          <a class="btn btn-primary px-4" routerLink="/login">Login</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- Hero Section -->
 <section class="hero-section">
-  <div class="hero-bg-cover"></div>
-  <div class="floating-shape floating-shape-1"></div>
-  <div class="floating-shape floating-shape-2"></div>
-
-  <div class="container hero-content">
-    <div class="row align-items-center">
-      <div class="col-lg-7 reveal-left">
-        <div class="hero-glass-card">
-          <span class="badge bg-primary px-3 py-2 rounded-pill mb-4 fw-bold text-uppercase tracking-wider" style="font-size: 0.7rem;">Revolutionizing Education</span>
-          <h1 class="display-4 mb-4">The Smartest Way to <br><span class="text-primary">Manage Your Institute.</span></h1>
-          <p class="lead mb-5 opacity-90 fs-5" style="max-width: 600px;">Streamline admissions, academics, and administration with our high-performance, cloud-based ERP solution designed for modern institutions.</p>
-          <div class="d-flex flex-wrap gap-3">
-            <a [routerLink]="['/register-plan', 'Standard']" class="btn btn-primary btn-lg rounded-pill px-5 py-3 fw-bold shadow-lg btn-hover-glow">Get Started Free</a>
-            <a class="btn btn-outline-light btn-lg rounded-pill px-5 py-3 fw-bold" style="border-width: 2px;" routerLink="/login">Watch Demo</a>
+  <div class="hero-overlay"></div>
+  <div class="container hero-inner">
+    <div class="hero-copy reveal-left">
+      <span class="hero-kicker">School ERP SaaS</span>
+      <h1>Academix</h1>
+      <p class="hero-lead">Run admissions, academics, attendance, fees, communication, and operations from one modern dashboard built for growing institutions.</p>
+      <div class="hero-actions">
+        <a [routerLink]="['/register-plan', 'Standard']" class="btn btn-primary btn-lg px-5">
+          Start Registration
+        </a>
+        <a routerLink="/login" class="btn btn-light btn-lg px-5">
+          View Demo
+        </a>
+      </div>
+      <div class="hero-metrics">
+        @for (metric of trustMetrics; track metric.label) {
+          <div>
+            <strong>{{ metric.value }}</strong>
+            <span>{{ metric.label }}</span>
           </div>
+        }
+      </div>
+    </div>
 
-          <div class="mt-5 d-flex align-items-center gap-4 reveal">
-             <div class="d-flex -space-x-3">
-               <img src="https://i.pravatar.cc/100?u=1&w=60&q=40" class="rounded-circle border border-2 border-white" width="40" alt="">
-               <img src="https://i.pravatar.cc/100?u=2&w=60&q=40" class="rounded-circle border border-2 border-white" width="40" alt="">
-               <img src="https://i.pravatar.cc/100?u=3&w=60&q=40" class="rounded-circle border border-2 border-white" width="40" alt="">
-             </div>
-             <p class="mb-0 small fw-medium">Trusted by <span class="text-primary fw-bold">500+</span> Institutions</p>
+    <div class="dashboard-preview reveal-right" aria-label="Academix dashboard preview">
+      <div class="preview-topbar">
+        <span></span>
+        <span></span>
+        <span></span>
+        <strong>Live Workspace</strong>
+      </div>
+      <div class="preview-grid">
+        <div class="preview-panel wide">
+          <p>Today&apos;s Attendance</p>
+          <strong>91%</strong>
+          <div class="meter"><span style="width: 91%"></span></div>
+        </div>
+        <div class="preview-panel">
+          <p>Fees Collected</p>
+          <strong>$45.2k</strong>
+        </div>
+        <div class="preview-panel">
+          <p>New Admissions</p>
+          <strong>42</strong>
+        </div>
+        <div class="preview-panel table-panel">
+          <div><span>Grade 10-A</span><strong>48 Students</strong></div>
+          <div><span>Exam Cell</span><strong>7 Pending</strong></div>
+          <div><span>Transport</span><strong>18 Routes</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="metrics-strip">
+  <div class="container">
+    <div class="strip-grid">
+      <div>
+        <strong>500+</strong>
+        <span>Institutions supported</span>
+      </div>
+      <div>
+        <strong>100k+</strong>
+        <span>Student records managed</span>
+      </div>
+      <div>
+        <strong>18+</strong>
+        <span>Connected ERP modules</span>
+      </div>
+      <div>
+        <strong>6</strong>
+        <span>Role-based portals</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="modules" class="section-block">
+  <div class="container">
+    <div class="section-heading reveal">
+      <span>ERP Modules</span>
+      <h2>Everything your institute needs, organized for daily work</h2>
+      <p>Academix brings the front office, classrooms, finance, parent communication, and operations into one connected system.</p>
+    </div>
+
+    <div class="module-grid">
+      @for (module of modules; track module.title) {
+        <article class="module-card reveal">
+          <div class="module-icon"><i class="bi" [ngClass]="module.icon"></i></div>
+          <h5>{{ module.title }}</h5>
+          <p>{{ module.description }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section id="workflow" class="workflow-section">
+  <div class="container">
+    <div class="workflow-layout">
+      <div class="workflow-copy reveal-left">
+        <span>Operating Model</span>
+        <h2>From setup to daily reporting without scattered tools</h2>
+        <p>Use one workspace to configure your school, run everyday workflows, and review the information leaders need.</p>
+        <a routerLink="/login" class="btn btn-primary px-4">Explore Dashboard</a>
+      </div>
+
+      <div class="workflow-list">
+        @for (item of workflow; track item.step) {
+          <article class="workflow-item reveal-right">
+            <strong>{{ item.step }}</strong>
+            <div>
+              <h5>{{ item.title }}</h5>
+              <p>{{ item.description }}</p>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="section-block pricing-section">
+  <div class="container">
+    <div class="section-heading reveal">
+      <span>Pricing</span>
+      <h2>Plans that scale with your institution</h2>
+      <p>Start small, add modules as teams adopt the system, and keep every department aligned.</p>
+    </div>
+
+    <div class="pricing-grid">
+      @for (plan of pricingPlans; track plan.name) {
+        <article class="pricing-card reveal" [class.recommended]="plan.recommended">
+          @if (plan.recommended) {
+            <span class="plan-badge">Best Value</span>
+          }
+          <h4>{{ plan.name }}</h4>
+          <div class="price">
+            <strong>{{ plan.price }}</strong>
+            <span>{{ plan.period }}</span>
           </div>
-        </div>
-      </div>
+          <ul>
+            @for (feature of plan.features; track feature) {
+              <li><i class="bi bi-check2-circle"></i>{{ feature }}</li>
+            }
+          </ul>
+          <a [routerLink]="['/register-plan', plan.name]" class="btn w-100" [class.btn-primary]="plan.recommended" [class.btn-outline-primary]="!plan.recommended">
+            {{ plan.cta }}
+          </a>
+        </article>
+      }
     </div>
-  </div>
-
-  <!-- Wave Divider -->
-  <div class="section-wave">
-    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
-    </svg>
   </div>
 </section>
 
-<!-- Stats Section -->
-<section class="stats-section">
+<section id="contact" class="contact-section">
   <div class="container">
-    <div class="row g-4 text-center">
-      <div class="col-md-3 col-6 reveal">
-        <div class="stat-item">
-          <h2>500+</h2>
-          <p>Global Schools</p>
-        </div>
+    <div class="contact-panel reveal">
+      <div>
+        <span>Ready for Academix?</span>
+        <h2>Bring every school workflow into one modern ERP workspace.</h2>
+        <p>Launch with admissions, attendance, finance, academics, communication, and operations from day one.</p>
       </div>
-      <div class="col-md-3 col-6 reveal">
-        <div class="stat-item">
-          <h2>100k+</h2>
-          <p>Active Students</p>
-        </div>
-      </div>
-      <div class="col-md-3 col-6 reveal">
-        <div class="stat-item">
-          <h2>99.9%</h2>
-          <p>Uptime Record</p>
-        </div>
-      </div>
-      <div class="col-md-3 col-6 reveal">
-        <div class="stat-item">
-          <h2>24/7</h2>
-          <p>Expert Support</p>
-        </div>
+      <div class="contact-actions">
+        <a [routerLink]="['/register-plan', 'Standard']" class="btn btn-light btn-lg px-5">Register Institute</a>
+        <a routerLink="/login" class="btn btn-outline-light btn-lg px-5">Open Demo</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Features Section -->
-<section id="features" class="py-100 bg-white">
+<footer class="landing-footer">
   <div class="container">
-    <div class="text-center mb-5 reveal">
-      <h2 class="fw-bold display-5 mb-3">All-in-One <span class="text-primary">SaaS Solution</span></h2>
-      <p class="text-muted fs-5 mx-auto" style="max-width: 700px;">Experience the power of a unified system that handles everything from fee collection to automated report cards.</p>
+    <div class="footer-brand">
+      <span class="brand-mark"><i class="bi bi-mortarboard-fill"></i></span>
+      <strong>Academix</strong>
     </div>
-    <div class="row g-4 pt-4">
-      <div class="col-md-4 reveal" *ngFor="let feature of features">
-        <div class="card h-100 border-0 p-3 transition-hover bg-light">
-          <div class="card-body">
-            <div class="feature-icon-wrapper">
-              <i class="bi" [ngClass]="feature.icon"></i>
-            </div>
-            <h5 class="fw-bold mb-3">{{feature.title}}</h5>
-            <p class="text-muted line-height-lg mb-0">{{feature.description}}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- About Section -->
-<section id="about" class="bg-light position-relative">
-  <div class="bg-pattern-dots position-absolute top-0 left-0 w-100 h-100"></div>
-  <div class="container position-relative">
-    <div class="row align-items-center g-5">
-      <div class="col-lg-6 reveal-left">
-        <div class="position-relative">
-            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=50" class="img-fluid rounded-4 shadow-2xl" alt="Classroom">
-            <div class="position-absolute bottom-0 start-0 m-4 p-4 bg-white rounded-3 shadow-lg reveal">
-                <div class="d-flex align-items-center gap-3">
-                    <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-circle">
-                        <i class="bi bi-shield-check fs-2"></i>
-                    </div>
-                    <div>
-                        <h6 class="fw-bold mb-0">ISO Certified</h6>
-                        <p class="small text-muted mb-0">Data Security Standards</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-      </div>
-      <div class="col-lg-6 reveal-right">
-        <h2 class="fw-bold mb-4 display-5">Engineered for <span class="text-primary">Success.</span></h2>
-        <p class="text-muted mb-5 fs-5">Our architecture is built to handle heavy traffic and complex data without compromising on speed or security.</p>
-
-        <div class="d-grid gap-4">
-            <div class="d-flex align-items-start gap-3">
-                <div class="bg-white shadow-sm p-2 rounded-3 text-primary">
-                    <i class="bi bi-cloud-check fs-4"></i>
-                </div>
-                <div>
-                    <h6 class="fw-bold">Seamless Migration</h6>
-                    <p class="text-muted small">Switch from your old system in less than 48 hours.</p>
-                </div>
-            </div>
-            <div class="d-flex align-items-start gap-3">
-                <div class="bg-white shadow-sm p-2 rounded-3 text-primary">
-                    <i class="bi bi-phone fs-4"></i>
-                </div>
-                <div>
-                    <h6 class="fw-bold">Mobile Responsive</h6>
-                    <p class="text-muted small">Access everything on your smartphone via our web app.</p>
-                </div>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Pricing Section -->
-<section id="pricing" class="py-100">
-  <div class="container">
-    <div class="text-center mb-5 reveal">
-      <h2 class="fw-bold display-5">Transparent <span class="text-primary">Pricing</span></h2>
-      <p class="text-muted fs-5">Scalable plans that grow with your institution.</p>
-    </div>
-    <div class="row g-4 justify-content-center pt-4">
-      <div class="col-lg-4 col-md-6 reveal" *ngFor="let plan of pricingPlans">
-        <div class="card h-100 pricing-card-premium p-4 transition-hover" [class.recommended]="plan.recommended">
-          <div class="card-body text-center">
-            <div *ngIf="plan.recommended" class="badge bg-primary rounded-pill mb-4 px-3 py-2 text-uppercase fw-bold">Best Value</div>
-            <h4 class="fw-bold mb-4">{{plan.name}}</h4>
-            <div class="mb-5">
-              <span class="display-4 fw-bold text-primary">{{plan.price}}</span>
-              <span class="text-muted fs-5">/mo</span>
-            </div>
-            <ul class="list-unstyled text-start mb-5">
-              <li class="mb-3 d-flex align-items-center" *ngFor="let feature of plan.features">
-                <i class="bi bi-check2-circle text-primary me-3 fs-5"></i>
-                <span class="fw-medium text-secondary">{{feature}}</span>
-              </li>
-            </ul>
-            <a [routerLink]="['/register-plan', plan.name]" class="btn w-100 rounded-pill py-3 fw-bold btn-hover-glow" [class.btn-primary]="plan.recommended" [class.btn-outline-primary]="!plan.recommended">
-              {{plan.cta}}
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Contact Section -->
-<section class="bg-dark text-white py-100">
-  <div class="container">
-    <div class="row g-5 align-items-center">
-      <div class="col-lg-6 reveal-left">
-        <h2 class="fw-bold display-5 mb-4">Start Your <span class="text-primary">Digital Journey</span></h2>
-        <p class="text-white-50 mb-5 fs-5">Ready to transform your school? Join 500+ institutions using EduERP today.</p>
-        <div class="d-flex align-items-center gap-4 mb-5">
-            <div class="d-flex flex-column">
-                <span class="fs-4 fw-bold">support@eduerp.com</span>
-                <span class="text-primary small">Technical Support 24/7</span>
-            </div>
-            <div class="vr bg-white opacity-25"></div>
-            <div class="d-flex flex-column">
-                <span class="fs-4 fw-bold">+1 (555) 123-4567</span>
-                <span class="text-primary small">Sales Consultation</span>
-            </div>
-        </div>
-      </div>
-      <div class="col-lg-6 reveal-right">
-        <div class="bg-white bg-opacity-10 p-5 rounded-4 border border-white border-opacity-10 backdrop-blur">
-            <form class="row g-3">
-                <div class="col-md-6">
-                    <label class="small text-white-50 mb-2">First Name</label>
-                    <input type="text" class="form-control bg-transparent border-secondary text-white py-2 shadow-none">
-                </div>
-                <div class="col-md-6">
-                    <label class="small text-white-50 mb-2">Email Address</label>
-                    <input type="email" class="form-control bg-transparent border-secondary text-white py-2 shadow-none">
-                </div>
-                <div class="col-12">
-                    <label class="small text-white-50 mb-2">How can we help?</label>
-                    <textarea class="form-control bg-transparent border-secondary text-white py-2 shadow-none" rows="3"></textarea>
-                </div>
-                <div class="col-12">
-                    <button class="btn btn-primary w-100 py-3 fw-bold rounded-3 mt-3 shadow-lg btn-hover-glow">Send Inquiry</button>
-                </div>
-            </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="bg-dark text-white py-5 border-top border-white border-opacity-10">
-  <div class="container text-center">
-    <div class="d-flex align-items-center justify-content-center mb-4">
-      <i class="bi bi-mortarboard-fill fs-2 text-primary me-2"></i>
-      <h3 class="fw-bold mb-0" style="font-family: 'Poppins', sans-serif;">EduERP</h3>
-    </div>
-    <div class="d-flex justify-content-center gap-4 mb-4">
-        <a href="#" class="text-white-50 text-decoration-none small">Privacy Policy</a>
-        <a href="#" class="text-white-50 text-decoration-none small">Terms of Service</a>
-        <a href="#" class="text-white-50 text-decoration-none small">Support</a>
-    </div>
-    <p class="text-white-50 small mb-0">&copy; 2024 EduERP SaaS. Excellence in Education Management.</p>
+    <p>Smart school ERP for connected institutions.</p>
+    <span>&copy; 2026 Academix. All rights reserved.</span>
   </div>
 </footer>

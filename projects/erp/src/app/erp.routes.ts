@@ -27,11 +27,11 @@ export const ERP_ROUTES: Routes = [
     children: [
       {
         path: 'login',
-        loadComponent: () => import('./auth/login/login').then(m => m.LoginComponent)
+        loadComponent: () => import('./features/auth/login/login.component').then(m => m.LoginComponent)
       },
       {
         path: 'forgot-password',
-        loadComponent: () => import('./auth/forgot-password/forgot-password').then(m => m.ForgotPasswordComponent)
+        loadComponent: () => import('./features/auth/forgot-password/forgot-password.component').then(m => m.ForgotPasswordComponent)
       },
       { path: '', redirectTo: 'login', pathMatch: 'full' }
     ]

@@ -1,16 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-// Custom Variables
-$primary: #4e73df;
-$secondary: #858796;
-$success: #1cc88a;
-$info: #36b9cc;
-$warning: #f6c23e;
-$danger: #e74a3b;
-$light: #f8f9fc;
-$dark: #5a5c69;
 
 // Bootstrap Icons
 @import "bootstrap-icons/font/bootstrap-icons.css";
+
+// Project Variables
+@import "assets/scss/variables";
 
 // Bootstrap Essential Parts Only (To stay under budget)
 @import "bootstrap/scss/functions";
@@ -130,3 +124,123 @@ html, body {
   background: #4e73df;
   border-radius: 10px;
 }
+
+// Global Button Enhancement
+.btn:not(.btn-link):not(.btn-close) {
+  color: #fff !important;
+  border: none !important;
+  background-size: 210% 210% !important;
+  background-position: 100% 0 !important;
+  transition: all 0.4s ease-in-out !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  &:hover {
+    background-position: 0 0 !important;
+    color: #fff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.btn-primary { background: $primary-gradient !important; }
+.btn-success { background: $success-gradient !important; }
+.btn-info    { background: $info-gradient !important; }
+.btn-warning { background: $warning-gradient !important; }
+.btn-danger  { background: $danger-gradient !important; }
+.btn-secondary { background: $secondary-gradient !important; }
+
+// Convert outline buttons to gradient as well to follow "whole project" rule
+[class*="btn-outline-"] {
+  color: #fff !important;
+  border: none !important;
+  
+  &.btn-outline-primary { background: $primary-gradient !important; }
+  &.btn-outline-success { background: $success-gradient !important; }
+  &.btn-outline-info    { background: $info-gradient !important; }
+  &.btn-outline-warning { background: $warning-gradient !important; }
+  &.btn-outline-danger  { background: $danger-gradient !important; }
+}
+
+.btn-light {
+  background: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%) !important;
+  color: #475569 !important;
+}
+
+.btn-link {
+  font-weight: 500 !important;
+  color: $primary !important;
+  &:hover { color: darken($primary, 15%) !important; }
+}
+
+// Dropdown Enhancement
+.dropdown-menu {
+  border: none !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 12px !important;
+  padding: 0.5rem !important;
+  margin-top: 0.5rem !important;
+  animation: fadeInDown 0.2s ease-out;
+}
+
+.dropdown-item {
+  border-radius: 8px !important;
+  padding: 0.6rem 1rem !important;
+  font-weight: 500 !important;
+  color: #475569 !important;
+  transition: all 0.2s ease !important;
+  
+  &:hover {
+    background-color: #f1f5f9 !important;
+    color: $primary !important;
+    transform: translateX(4px);
+  }
+  
+  &.active {
+    background: $primary-gradient !important;
+    color: #fff !important;
+  }
+}
+
+.dropdown-toggle::after {
+  display: none !important;
+}
+
+.dropdown-chevron {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease !important;
+  color: #94a3b8;
+}
+
+.show > .btn .dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+.dropdown-toggle.btn-light {
+  background: #fff !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  color: #475569 !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02) !important;
+  
+  &:hover, &:focus {
+    border-color: $primary !important;
+    background: #fff !important;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.08) !important;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

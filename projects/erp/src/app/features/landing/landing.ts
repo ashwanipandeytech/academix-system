@@ -8,19 +8,19 @@ import { Meta, Title } from '@angular/platform-browser';
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './landing.html',
-  styleUrl: './landing.scss'
+  styleUrls: ['./landing.scss']
 })
 export class LandingComponent implements OnInit {
   private meta = inject(Meta);
   private titleService = inject(Title);
 
   ngOnInit() {
-    this.titleService.setTitle('EduERP - Smart School Management System');
+    this.titleService.setTitle('Academix - Smart School ERP');
     this.meta.addTags([
-      { name: 'description', content: 'Comprehensive School Management System for modern educational institutions. Manage students, fees, attendance, and more with ease.' },
+      { name: 'description', content: 'Modern school ERP for admissions, academics, fees, attendance, exams, communication, and operations.' },
       { name: 'keywords', content: 'school erp, school management system, student management, fee management, attendance tracker' },
-      { property: 'og:title', content: 'EduERP - Smart School Management System' },
-      { property: 'og:description', content: 'Transform your school operations with our smart ERP solution.' }
+      { property: 'og:title', content: 'Academix - Smart School ERP' },
+      { property: 'og:description', content: 'Run every school workflow from one connected ERP workspace.' }
     ]);
 
     this.initScrollAnimations();
@@ -58,13 +58,25 @@ export class LandingComponent implements OnInit {
       }
     });
   }
-  features = [
-    { icon: 'bi-person-badge', title: 'Student Management', description: 'Streamline admissions, profiles, and student records efficiently.' },
-    { icon: 'bi-cash-coin', title: 'Fee Management', description: 'Automate fee collection, invoicing, and financial reporting.' },
-    { icon: 'bi-calendar-check', title: 'Attendance', description: 'Track student and staff attendance with real-time updates.' },
-    { icon: 'bi-graph-up-arrow', title: 'Reports', description: 'Generate comprehensive academic and administrative reports.' },
-    { icon: 'bi-people', title: 'Staff Management', description: 'Manage payroll, leave, and performance of all staff members.' },
-    { icon: 'bi-chat-dots', title: 'Communication', description: 'Seamlessly connect teachers, students, and parents.' }
+  trustMetrics = [
+    { value: '18+', label: 'ERP modules' },
+    { value: '99.9%', label: 'Cloud uptime' },
+    { value: '24/7', label: 'Role access' }
+  ];
+
+  modules = [
+    { icon: 'bi-person-plus-fill', title: 'Admissions', description: 'Enquiries, applications, document checks, and admission fees in one trackable pipeline.' },
+    { icon: 'bi-qr-code-scan', title: 'Attendance', description: 'QR attendance, leave records, late marks, and daily summaries for students and staff.' },
+    { icon: 'bi-wallet2', title: 'Fees & Accounting', description: 'Fee collection, dues, receipts, expenses, payroll, and finance reporting.' },
+    { icon: 'bi-award-fill', title: 'Exams & Results', description: 'Schedules, marks entry, report cards, grade sheets, and result publishing.' },
+    { icon: 'bi-megaphone-fill', title: 'Communication', description: 'Notices, messages, reminders, parent updates, and support tickets.' },
+    { icon: 'bi-box-seam-fill', title: 'Operations', description: 'Inventory, transport, hostel, library, live classes, website CMS, and audit logs.' }
+  ];
+
+  workflow = [
+    { step: '01', title: 'Set up your institute', description: 'Configure branches, classes, roles, permissions, and academic sessions.' },
+    { step: '02', title: 'Run daily operations', description: 'Manage admissions, attendance, fees, assignments, messages, and reports.' },
+    { step: '03', title: 'Review every outcome', description: 'Track finance, academics, staff activity, support requests, and audit logs.' }
   ];
 
   pricingPlans = [

@@ -46,11 +46,11 @@
           </div>
           <div class="col-md-3">
             <div class="dropdown">
-              <button class="btn btn-light dropdown-toggle w-100 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <button class="btn btn-light dropdown-toggle w-100 d-flex justify-content-between align-items-center" type="button" id="financeStatusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 <span>{{selectedStatus()}}</span>
                 <i class="bi bi-chevron-down dropdown-chevron"></i>
               </button>
-              <ul class="dropdown-menu w-100">
+              <ul class="dropdown-menu w-100" aria-labelledby="financeStatusDropdown">
                 @for (status of statusOptions; track status) {
                   <li>
                     <button type="button" class="dropdown-item" [class.active]="selectedStatus() === status" (click)="setStatusFilter(status)">

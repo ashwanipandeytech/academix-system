@@ -27,22 +27,24 @@
             <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="fade-in">
               <div class="mb-3">
                 <label class="form-label small fw-semibold text-muted">Your Role</label>
-                <div class="dropdown w-100">
-                  <button class="btn btn-light border dropdown-toggle w-100 py-3 text-start d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span>{{getRoleLabel(loginForm.get('role')?.value)}}</span>
+                <div class="dropdown role-dropdown w-100" [class.show]="loginRoleDropdownOpen()">
+                  <button class="btn btn-light border dropdown-toggle w-100 py-3 text-start d-flex justify-content-between align-items-center" type="button" id="loginRoleDropdown" data-bs-toggle="dropdown" [class.show]="loginRoleDropdownOpen()" [attr.aria-expanded]="loginRoleDropdownOpen()" (click)="toggleLoginRoleDropdown($event)">
+                    <span class="text-dark">{{getRoleLabel(selectedLoginRole())}}</span>
                     <i class="bi bi-chevron-down dropdown-chevron"></i>
                   </button>
-                  <ul class="dropdown-menu w-100">
+                  <ul class="dropdown-menu w-100" [class.show]="loginRoleDropdownOpen()" aria-labelledby="loginRoleDropdown">
                     @for (role of loginRoles; track role.value) {
                       <li>
-                        <button type="button" class="dropdown-item" [class.active]="loginForm.get('role')?.value === role.value" (click)="setLoginRole(role.value)">
+                        <button type="button" class="dropdown-item" 
+                           [class.active]="selectedLoginRole() === role.value" 
+                           (click)="setLoginRole(role.value)">
                           {{role.label}}
                         </button>
                       </li>
                     }
                   </ul>
                 </div>
-              </div>
+                </div>
               <div class="form-floating mb-3">
                 <input type="email" class="form-control" id="loginEmail" placeholder="name@school.com" formControlName="email">
                 <label for="loginEmail">Email Address</label>
@@ -57,11 +59,11 @@
                   <input type="checkbox" class="form-check-input" id="rememberMe">
                   <label class="form-check-label small" for="rememberMe">Remember me</label>
                 </div>
-                <a href="#" class="small text-primary text-decoration-none fw-medium">Forgot password?</a>
+                <a routerLink="/forgot-password" class="small text-primary text-decoration-none fw-medium">Forgot password?</a>
               </div>
 
               <button type="submit" class="btn btn-primary w-100 py-3 fw-bold mb-3">Sign In</button>
-              <div class="auth-divider my-4">
+              <!-- <div class="auth-divider my-4">
                 <span>or continue with</span>
               </div>
               <div class="row g-3 mb-3">
@@ -78,7 +80,7 @@
                   </button>
                 </div>
               </div>
-              <button type="button" class="btn btn-light w-100 py-2 border small fw-medium" (click)="toggleOtp()">Login with OTP instead</button>
+              <button type="button" class="btn btn-light w-100 py-2 border small fw-medium" (click)="toggleOtp()">Login with OTP instead</button> -->
 
               <div class="demo-box mt-4">
                 <p class="small fw-bold mb-2">Demo login</p>
@@ -101,22 +103,24 @@
               </div>
               <div class="mb-3">
                 <label class="form-label small fw-semibold text-muted">Select Role</label>
-                <div class="dropdown w-100">
-                  <button class="btn btn-light border dropdown-toggle w-100 py-3 text-start d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span>{{getRoleLabel(signupForm.get('role')?.value)}}</span>
+                <div class="dropdown role-dropdown w-100" [class.show]="signupRoleDropdownOpen()">
+                  <button class="btn btn-light border dropdown-toggle w-100 py-3 text-start d-flex justify-content-between align-items-center" type="button" id="signupRoleDropdown" data-bs-toggle="dropdown" [class.show]="signupRoleDropdownOpen()" [attr.aria-expanded]="signupRoleDropdownOpen()" (click)="toggleSignupRoleDropdown($event)">
+                    <span class="text-dark">{{getRoleLabel(selectedSignupRole())}}</span>
                     <i class="bi bi-chevron-down dropdown-chevron"></i>
                   </button>
-                  <ul class="dropdown-menu w-100">
+                  <ul class="dropdown-menu w-100" [class.show]="signupRoleDropdownOpen()" aria-labelledby="signupRoleDropdown">
                     @for (role of signupRoles; track role.value) {
                       <li>
-                        <button type="button" class="dropdown-item" [class.active]="signupForm.get('role')?.value === role.value" (click)="setSignupRole(role.value)">
+                        <button type="button" class="dropdown-item" 
+                           [class.active]="selectedSignupRole() === role.value" 
+                           (click)="setSignupRole(role.value)">
                           {{role.label}}
                         </button>
                       </li>
                     }
                   </ul>
                 </div>
-              </div>
+                </div>
               <div class="form-floating mb-3">
                 <input type="password" class="form-control" id="signupPassword" placeholder="Password" formControlName="password">
                 <label for="signupPassword">Password</label>
