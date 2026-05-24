@@ -47,6 +47,9 @@
           },
           "configurations": {
             "production": {
+              "optimization": {
+                "fonts": false
+              },
               "budgets": [
                 {
                   "type": "initial",
@@ -65,36 +68,6 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
-            },
-            "production-ssr": {
-              "outputHashing": "all",
-              "server": "projects/erp/src/main.server.ts",
-              "outputMode": "server",
-              "ssr": {
-                "entry": "projects/erp/src/server.ts"
-              },
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
-                }
-              ]
-            },
-            "development-ssr": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "server": "projects/erp/src/main.server.ts",
-              "outputMode": "server",
-              "ssr": {
-                "entry": "projects/erp/src/server.ts"
-              }
             }
           },
           "defaultConfiguration": "production"
@@ -108,9 +81,6 @@
             },
             "development": {
               "buildTarget": "erp:build:development"
-            },
-            "development-ssr": {
-              "buildTarget": "erp:build:development-ssr"
             }
           },
           "defaultConfiguration": "development"
