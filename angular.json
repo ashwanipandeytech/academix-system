@@ -38,9 +38,6 @@
             "styles": [
               "projects/erp/src/styles.scss"
             ],
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-            ],
             "polyfills": [
               "zone.js"
             ],
